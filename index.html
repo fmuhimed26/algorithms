@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>مرجع الخوارزميات الشامل</title>
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #111827;
+            --text: #e5e7eb;
+            --muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-2: #38bdf8;
+            --border: #1f2937;
+            --code-bg: #0b1020;
+            --heading: #fff;
+        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: "Cairo", "Segoe UI", system-ui, -apple-system, Arial, sans-serif; line-height: 1.7; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        header { padding: 24px 0 0 0; text-align: center; }
+        h1 { font-size: 2.5rem; margin: 0; color: var(--heading); }
+        .lead { color: var(--muted); margin-top: 8px; font-size: 1.1rem; }
+        .nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 32px; justify-content: center; }
+        .nav a { background: var(--card); border: 1px solid var(--border); padding: 10px 16px; border-radius: 10px; color: var(--text); font-size: .95rem; transition: all 0.3s; }
+        .nav a:hover { background: var(--accent); color: var(--bg); text-decoration: none; }
+        section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 20px 0; }
+        h2 { margin: 0 0 16px 0; font-size: 1.5rem; color: var(--heading); border-right: 4px solid var(--accent); padding-right: 12px; }
+        h3 { margin: 20px 0 10px 0; font-size: 1.2rem; color: var(--heading); }
+        h4 { margin: 16px 0 8px 0; font-size: 1.1rem; color: var(--accent-2); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 16px 0; }
+        .card { background: #0e1527; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+        .table { width: 100%; border-collapse: collapse; margin-top: 12px; overflow-x: auto; display: block; }
+        .table th, .table td { border: 1px solid var(--border); padding: 10px; text-align: right; font-size: .95rem; }
+        .table th { background: #0e1527; color: #cbd5e1; font-weight: bold; }
+        .code { padding: 16px; background: var(--code-bg); border-radius: 8px; overflow: auto; direction: ltr; text-align: left; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size: .95rem; line-height: 1.6; color: #e6edf3; margin: 12px 0; }
+        .code-line { display: block; white-space: pre-wrap; margin: 0; }
+        .note { color: var(--muted); font-size: .95rem; background: rgba(148, 163, 184, 0.1); padding: 12px; border-radius: 8px; margin: 12px 0; border-right: 3px solid var(--accent); }
+        .example { background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent); padding: 16px; border-radius: 8px; margin: 16px 0; }
+        .example-title { color: var(--accent); font-weight: bold; margin-bottom: 8px; font-size: 1.1rem; }
+        .complexity { display: inline-block; background: #0e1527; border: 1px solid var(--accent-2); color: var(--accent-2); border-radius: 6px; padding: 4px 10px; font-size: .9rem; margin: 5px 0; }
+        .algorithm-steps { padding-right: 20px; margin: 12px 0; }
+        .algorithm-steps li { margin-bottom: 8px; }
+        footer { color: #94a3b8; text-align: center; padding: 24px 0; border-top: 1px solid var(--border); margin-top: 40px; }
+        .visual-diagram { background: rgba(148, 163, 184, 0.05); border: 1px dashed var(--border); padding: 20px; border-radius: 8px; margin: 16px 0; text-align: center; }
+        
+        @media (max-width: 768px) {
+            .nav { flex-direction: column; }
+            .nav a { width: 100%; text-align: center; }
+            header h1 { font-size: 1.8rem; }
+            section { padding: 16px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 480px) {
+            body { font-size: 14px; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.2rem; }
+            h3 { font-size: 1.1rem; }
+            .table th, .table td { font-size: .85rem; padding: 8px; }
+            .code { font-size: .85rem; padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>مرجع الخوارزميات الشامل</h1>
+            <p class="lead">شرح مفصل لجميع خوارزميات الفرز والبحث وهياكل البيانات مع أمثلة وأكواد تنفيذية</p>
+        </header>
+        
+        <!-- قائمة التنقل الرئيسية -->
+        <nav class="nav" aria-label="تنقل الأقسام">
+            <a href="#algorithm-definition">تعريف الخوارزمية</a>
+            <a href="#sorting-algorithms">خوارزميات الفرز</a>
+            <a href="#searching-algorithms">خوارزميات البحث</a>
+            <a href="#recursive-algorithms">الخوارزميات التعاودية</a>
+            <a href="#data-structures">هياكل البيانات</a>
+            <a href="#linked-lists">اللوائح المرتبطة</a>
+            <a href="#stacks">المكدس</a>
+            <a href="#trees">الأشجار الثنائية</a>
+            <a href="#binary-conversion">تحويل إلى ثنائي</a>
+            <a href="#exercises">حل التمارين</a>
+        </nav>
+        
+        <!-- 1. مقدمة عن الخوارزميات -->
+        <section id="algorithm-definition">
+            <h2>1. مقدمة عن الخوارزميات وهياكل البيانات</h2>
+            
+            <h3>تعريف الخوارزمية (Algorithm)</h3>
+            <p>هي مجموعة من الخطوات المنطقية والمتسلسلة لحل مشكلة معينة أو تحقيق هدف معين.</p>
+            
+            <h3>تعريف هياكل البيانات (Data Structures)</h3>
+            <p>وتسمى أيضاً بنى المعطيات وهي طرق مختلفة لتخزين وتنظيم البيانات في الذاكرة.</p>
+            
+            <div class="note">
+                <strong>العلاقة بين الخوارزميات وهياكل البيانات:</strong><br>
+                الخوارزمية تمثل كيفية حل مشاكل مختلفة وغالباً يكون ذلك من خلال البحث في هياكل البيانات ومعالجتها. أما هياكل البيانات فتمثل كيفية تخزين البيانات في هياكل مختلفة مثل المصفوفات واللوائح المرتبطة والأشجار وغيرها.
+            </div>
+            
+            <p>بالتأكيد فإن البرنامج يتكون من خوارزميات وهياكل البيانات:</p>
+            <div class="code">
+                <span class="code-line">Programs = Data structures + Algorithms</span>
+            </div>
+            
+            <h3>من أنواع الخوارزميات:</h3>
+            <ul>
+                <li>خوارزميات الفرز (Sorting Algorithm): مثل الفرز الفقاعي، الفرز بالاختيار، الفرز بالإقحام</li>
+                <li>خوارزميات البحث (Searching Algorithm): مثل البحث الخطي والبحث الثنائي</li>
+                <li>الخوارزميات التعاودية (Recursive Algorithm): مثل أبراج هانوي ومنحنيات هيلبرت</li>
+                <li>الخوارزميات التراجعية (Backtracking Algorithm): مثل مسألة الوزراء الثمانية وجولة الحصان</li>
+            </ul>
+            
+            <h3>من أنواع هياكل البيانات:</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>الاسم الإنجليزي</th>
+                        <th>الاسم العربي</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Queues</td><td>الأرتال</td></tr>
+                    <tr><td>Stack</td><td>المكدس</td></tr>
+                    <tr><td>Binary Tree</td><td>الأشجار الثنائية</td></tr>
+                    <tr><td>Linked List</td><td>اللوائح المرتبطة</td></tr>
+                    <tr><td>Graphs</td><td>المخططات</td></tr>
+                </tbody>
+            </table>
+            
+            <h3>مواصفات الخوارزمية الجيدة:</h3>
+            <ul>
+                <li>أن تكون سهلة وواضحة حتى لغير المختصين</li>
+                <li>أن تكون منتهية وغير معقدة مما يضمن سهولة تحويلها إلى برنامج</li>
+                <li>السرعة مما يضمن زمن تنفيذ قصير</li>
+                <li>استهلاك قليل للذاكرة عند تحويلها إلى برنامج</li>
+            </ul>
+        </section>
+        
+        <!-- 2. خوارزميات الفرز -->
+        <section id="sorting-algorithms">
+            <h2>2. خوارزميات الفرز (Sorting Algorithms)</h2>
+            
+            <!-- 2.1 الفرز الفقاعي -->
+            <h3>2.1 خوارزمية الفرز الفقاعي (Bubble Sort)</h3>
+            <div class="complexity">التعقيد الزمني: O(n²)</div>
+            
+            <p>هي خوارزمية بسيطة تستخدم لترتيب عناصر معينة تصاعدياً أو تنازلياً، حيث تتصاعد العناصر تدريجياً إلى مواقعها الصحيحة مثل الفقاعات التي تتصاعد في الماء.</p>
+            
+            <div class="example">
+                <div class="example-title">مثال عملي:</div>
+                <p>لنفرض لدينا الأرقام التالية: [20, 13, 15, 24, 17, 10] ونريد ترتيبها تصاعدياً:</p>
+                
+                <p><strong>الدورة الأولى:</strong></p>
+                <p>20>13 → التبديل ← [13, 20, 15, 24, 17, 10]<br>
+                20>15 → التبديل ← [13, 15, 20, 24, 17, 10]<br>
+                20<24 ← لا تبديل<br>
+                24>17 → التبديل ← [13, 15, 20, 17, 24, 10]<br>
+                24>10 → التبديل ← [13, 15, 20, 17, 10, 24]</p>
+                
+                <p><strong>الدورة الثانية:</strong></p>
+                <p>13<15 ← لا تبديل<br>
+                15<20 ← لا تبديل<br>
+                20>17 → التبديل ← [13, 15, 17, 20, 10, 24]<br>
+                20>10 → التبديل ← [13, 15, 17, 10, 20, 24]</p>
+                
+                <p>وتستمر العملية حتى الحصول على: [10, 13, 15, 17, 20, 24]</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">class Program {</span>
+<span class="code-line">    static void Main(string[] args) {</span>
+<span class="code-line">        int[] arr = {20, 46, 50, 3, 70};</span>
+<span class="code-line">        Print(arr);</span>
+<span class="code-line">        BubbleSort(arr);</span>
+<span class="code-line">        Print(arr);</span>
+<span class="code-line">    }</span>
+<span class="code-line">    </span>
+<span class="code-line">    static void Print(int[] arr) {</span>
+<span class="code-line">        for (int i = 0; i < arr.Length; i++)</span>
+<span class="code-line">            Console.WriteLine(arr[i]);</span>
+<span class="code-line">    }</span>
+<span class="code-line">    </span>
+<span class="code-line">    static void BubbleSort(int[] arr) {</span>
+<span class="code-line">        int n = arr.Length;</span>
+<span class="code-line">        bool flag = false;</span>
+<span class="code-line">        for (int i = 0; i < n - 1; i++) {</span>
+<span class="code-line">            for (int j = 0; j < n - i - 1; j++) {</span>
+<span class="code-line">                if (arr[j] > arr[j + 1]) {</span>
+<span class="code-line">                    int temp = arr[j];</span>
+<span class="code-line">                    arr[j] = arr[j + 1];</span>
+<span class="code-line">                    arr[j + 1] = temp;</span>
+<span class="code-line">                    flag = true;</span>
+<span class="code-line">                }</span>
+<span class="code-line">            }</span>
+<span class="code-line">            if (flag == false)</span>
+<span class="code-line">                break;</span>
+<span class="code-line">        }</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <!-- 2.2 الفرز بالاختيار -->
+            <h3>2.2 خوارزمية الفرز بالاختيار (Selection Sort)</h3>
+            <div class="complexity">التعقيد الزمني: O(n²)</div>
+            
+            <p>هي خوارزمية بسيطة يتم فيها البحث عن أصغر عنصر (أو أكبر عنصر في الترتيب التنازلي) ثم استبدال هذا العنصر مع أول عنصر في المصفوفة.</p>
+            
+            <div class="example">
+                <div class="example-title">مثال عملي:</div>
+                <p>رتب الأرقام التالية تصاعدياً: [30, 40, 10, 20, 15, 12]</p>
+                
+                <p><strong>الخطوة الأولى:</strong> البحث عن أصغر عنصر (10) ووضعه في البداية<br>
+                النتيجة: [10, 40, 30, 20, 15, 12]</p>
+                
+                <p><strong>الخطوة الثانية:</strong> البحث عن ثاني أصغر عنصر (12) من العناصر غير المرتبة<br>
+                النتيجة: [10, 12, 30, 20, 15, 40]</p>
+                
+                <p><strong>الخطوة الثالثة:</strong> البحث عن ثالث أصغر عنصر (15)<br>
+                النتيجة: [10, 12, 15, 20, 30, 40]</p>
+                
+                <p>وتستمر حتى الحصول على: [10, 12, 15, 20, 30, 40]</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">static void SelectionSorting(int[] arr) {</span>
+<span class="code-line">    int minInx;</span>
+<span class="code-line">    for (int i = 0; i < arr.Length - 1; i++) {</span>
+<span class="code-line">        minInx = i;</span>
+<span class="code-line">        for (int j = i + 1; j < arr.Length; j++) {</span>
+<span class="code-line">            if (arr[j] < arr[minInx]) {</span>
+<span class="code-line">                minInx = j;</span>
+<span class="code-line">            }</span>
+<span class="code-line">        }</span>
+<span class="code-line">        int temp = arr[i];</span>
+<span class="code-line">        arr[i] = arr[minInx];</span>
+<span class="code-line">        arr[minInx] = temp;</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <!-- 2.3 الفرز بالإقحام -->
+            <h3>2.3 خوارزمية الفرز بالإقحام (Insertion Sort)</h3>
+            <div class="complexity">التعقيد الزمني: O(n²)</div>
+            
+            <p>وتسمى أيضاً خوارزمية الفرز بالإدراج وهي خوارزمية بسيطة تعمل على إدراج كل عنصر من قائمة غير مرتبة بشكل متكرر في موضعه الصحيح في جزء مرتب.</p>
+            
+            <div class="example">
+                <div class="example-title">مثال عملي:</div>
+                <p>رتب الأعداد التالية: [45, 17, 16, 20, 18, 23]</p>
+                
+                <p><strong>الخطوة الأولى:</strong> العنصر الأول 45 يعتبر مرتباً<br>
+                المفتاح = 17 ← 17<45 ← إزاحة 45 وإدراج 17 ← [17, 45, 16, 20, 18, 23]</p>
+                
+                <p><strong>الخطوة الثانية:</strong> المفتاح = 16 ← 16<45 ← إزاحة 45 ← 16<17 ← إزاحة 17 ← إدراج 16<br>
+                النتيجة: [16, 17, 45, 20, 18, 23]</p>
+                
+                <p><strong>الخطوة الثالثة:</strong> المفتاح = 20 ← 20<45 ← إزاحة 45 ← 20>17 ← إدراج 20 بعد 17<br>
+                النتيجة: [16, 17, 20, 45, 18, 23]</p>
+                
+                <p>وتستمر حتى الحصول على: [16, 17, 18, 20, 23, 45]</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">static void InsertionSorting(int[] arr) {</span>
+<span class="code-line">    for (int i = 1; i < arr.Length; i++) {</span>
+<span class="code-line">        int key = arr[i], j = i - 1;</span>
+<span class="code-line">        while (j >= 0 && key < arr[j]) {</span>
+<span class="code-line">            arr[j + 1] = arr[j];</span>
+<span class="code-line">            j--;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        arr[j + 1] = key;</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <!-- 2.4 الفرز بالدمج -->
+            <h3>2.4 خوارزمية الفرز بالدمج (Merge Sort)</h3>
+            <div class="complexity">التعقيد الزمني: O(n log n)</div>
+            
+            <p>تعتمد هذه الخوارزمية على أسلوب "فرق تسد" (Divide & Conquer) وعلى مبدأ التعاودية في عملها.</p>
+            
+            <div class="example">
+                <div class="example-title">مثال عملي:</div>
+                <p>رتب العناصر التالية تصاعدياً: [20, 5, 13, 4, 25, 10, 8]</p>
+                
+                <p><strong>مرحلة التقسيم:</strong><br>
+                [20, 5, 13, 4, 25, 10, 8]<br>
+                [20, 5, 13, 4] و [25, 10, 8]<br>
+                [20, 5] و [13, 4] و [25, 10] و [8]<br>
+                [20] و [5] و [13] و [4] و [25] و [10] و [8]</p>
+                
+                <p><strong>مرحلة الدمج والترتيب:</strong><br>
+                [5, 20] و [4, 13] و [10, 25] و [8]<br>
+                [4, 5, 13, 20] و [8, 10, 25]<br>
+                [4, 5, 8, 10, 13, 20, 25]</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">static void merge(int[] arr, int left, int middle, int right) {</span>
+<span class="code-line">    int i, j, k;</span>
+<span class="code-line">    int n1 = middle - left + 1;</span>
+<span class="code-line">    int n2 = right - middle;</span>
+<span class="code-line">    int[] arr1 = new int[n1];</span>
+<span class="code-line">    int[] arr2 = new int[n2];</span>
+<span class="code-line">    </span>
+<span class="code-line">    for (i = 0; i < n1; i++) arr1[i] = arr[left + i];</span>
+<span class="code-line">    for (j = 0; j < n2; j++) arr2[j] = arr[middle + 1 + j];</span>
+<span class="code-line">    </span>
+<span class="code-line">    i = j = 0;</span>
+<span class="code-line">    k = left;</span>
+<span class="code-line">    </span>
+<span class="code-line">    while (i < n1 && j < n2) {</span>
+<span class="code-line">        if (arr1[i] < arr2[j]) {</span>
+<span class="code-line">            arr[k] = arr1[i];</span>
+<span class="code-line">            i++;</span>
+<span class="code-line">        } else {</span>
+<span class="code-line">            arr[k] = arr2[j];</span>
+<span class="code-line">            j++;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        k++;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    </span>
+<span class="code-line">    while (i < n1) {</span>
+<span class="code-line">        arr[k] = arr1[i];</span>
+<span class="code-line">        i++; k++;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    </span>
+<span class="code-line">    while (j < n2) {</span>
+<span class="code-line">        arr[k] = arr2[j];</span>
+<span class="code-line">        j++; k++;</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">static void mergeSort(int[] arr, int left, int right) {</span>
+<span class="code-line">    if (left < right) {</span>
+<span class="code-line">        int mid = (left + right) / 2;</span>
+<span class="code-line">        mergeSort(arr, left, mid);</span>
+<span class="code-line">        mergeSort(arr, mid + 1, right);</span>
+<span class="code-line">        merge(arr, left, mid, right);</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <!-- 2.5 الفرز السريع -->
+            <h3>2.5 خوارزمية الفرز السريع (Quick Sort)</h3>
+            <div class="complexity">التعقيد الزمني: O(n log n) في المتوسط، O(n²) في أسوأ الحالات</div>
+            
+            <p>تعتمد خوارزمية الفرز السريع في عملها على مبدأ "فرق تسد" (Divide and Conquer) حيث يتم اختيار عنصر محوري (pivot) ثم تقسيم العناصر حول هذا المحور.</p>
+            
+            <div class="example">
+                <div class="example-title">مثال عملي:</div>
+                <p>رتب المصفوفة التالية: [20, 15, 30, 17, 60, 18]</p>
+                
+                <p><strong>المرحلة الأولى (pivot = 20):</strong><br>
+                مقارنة 18<20 ← التبديل ← [18, 15, 30, 17, 60, 20]<br>
+                مقارنة 15<20 ← التبديل ← [15, 18, 30, 17, 60, 20]<br>
+                مقارنة 30>20 ← لا تبديل ← تحريك المؤشر<br>
+                مقارنة 60>20 ← لا تبديل ← تحريك المؤشر<br>
+                مقارنة 17<20 ← التبديل ← [15, 18, 17, 30, 60, 20]<br>
+                النتيجة: [15, 18, 17] و [20] و [30, 60]</p>
+                
+                <p>تكرر العملية على الأجزاء الجانبية حتى الترتيب النهائي.</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">static int partition(int[] arr, int left, int right) {</span>
+<span class="code-line">    int i = left, j = right, piv = i;</span>
+<span class="code-line">    </span>
+<span class="code-line">    while (true) {</span>
+<span class="code-line">        while (arr[piv] <= arr[j] && piv != j) j--;</span>
+<span class="code-line">        if (piv == j) break;</span>
+<span class="code-line">        else if (arr[piv] > arr[j]) {</span>
+<span class="code-line">            int temp = arr[piv];</span>
+<span class="code-line">            arr[piv] = arr[j];</span>
+<span class="code-line">            arr[j] = temp;</span>
+<span class="code-line">            piv = j;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        </span>
+<span class="code-line">        while (arr[piv] > arr[i] && piv != i) i++;</span>
+<span class="code-line">        if (piv == i) break;</span>
+<span class="code-line">        else if (arr[piv] < arr[i]) {</span>
+<span class="code-line">            int temp = arr[piv];</span>
+<span class="code-line">            arr[piv] = arr[i];</span>
+<span class="code-line">            arr[i] = temp;</span>
+<span class="code-line">            piv = i;</span>
+<span class="code-line">        }</span>
+<span class="code-line">    }</span>
+<span class="code-line">    return piv;</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">static void quickSort(int[] arr, int left, int right) {</span>
+<span class="code-line">    if (left < right) {</span>
+<span class="code-line">        int piv = partition(arr, left, right);</span>
+<span class="code-line">        quickSort(arr, left, piv - 1);</span>
+<span class="code-line">        quickSort(arr, piv + 1, right);</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+            </div>
+        </section>
+        
+        <!-- 3. خوارزميات البحث -->
+        <section id="searching-algorithms">
+            <h2>3. خوارزميات البحث (Searching Algorithms)</h2>
+            
+            <!-- 3.1 البحث التسلسلي -->
+            <h3>3.1 البحث التسلسلي (Sequential Search / Linear Search)</h3>
+            <div class="complexity">التعقيد الزمني: O(n)</div>
+            
+            <p>يسمى أيضاً بالبحث الخطي حيث يتم البحث في هذا النوع عن العنصر الهدف (target) ضمن مجموعة عناصر وذلك بمقارنته مع كافة عناصر المجموعة عنصراً عنصراً.</p>
+            
+            <div class="example">
+                <div class="example-title">مثال عملي:</div>
+                <p>لدينا المصفوفة التالية: [6, 12, 10, 9, 15, 20]</p>
+                
+                <p><strong>البحث عن العدد 10:</strong><br>
+                مقارنة 6 مع 10 ← غير متطابق<br>
+                مقارنة 12 مع 10 ← غير متطابق<br>
+                مقارنة 10 مع 10 ← متطابق ← تم العثور عليه في الموقع 2 (index)</p>
+                
+                <p><strong>البحث عن العدد 5:</strong><br>
+                مقارنة مع جميع العناصر ← غير موجود ← إرجاع -1</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">public int sequentialSearch(int[] arr, int target) {</span>
+<span class="code-line">    for (int i = 0; i < arr.Length; i++) {</span>
+<span class="code-line">        if (target == arr[i])</span>
+<span class="code-line">            return i;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    return -1;</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">static void Main(string[] args) {</span>
+<span class="code-line">    int target = int.Parse(Console.ReadLine());</span>
+<span class="code-line">    int[] arr = {6, 12, 10, 9, 15, 20};</span>
+<span class="code-line">    int index = sequentialSearch(arr, target);</span>
+<span class="code-line">    </span>
+<span class="code-line">    if (index != -1)</span>
+<span class="code-line">        Console.WriteLine(target + " is found in " + index);</span>
+<span class="code-line">    else</span>
+<span class="code-line">        Console.WriteLine(target + " is not found");</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <!-- 3.2 البحث الثنائي -->
+            <h3>3.2 البحث الثنائي (Binary Search)</h3>
+            <div class="complexity">التعقيد الزمني: O(log n)</div>
+            
+            <p>خوارزمية البحث الثنائي هي طريقة سريعة للبحث داخل سلسلة مرتبة، حيث يتم في كل خطوة تقسيم القائمة أو السلسلة إلى نصفين.</p>
+            
+            <div class="note">
+                <strong>ملاحظة:</strong> لا يمكن استخدام البحث الثنائي إلا إذا كانت المصفوفة مرتبة.
+            </div>
+            
+            <div class="example">
+                <div class="example-title">مثال عملي:</div>
+                <p>لدينا المصفوفة المرتبة: [6, 9, 10, 12, 15, 20]</p>
+                
+                <p><strong>البحث عن العدد 12:</strong><br>
+                low = 0, high = 5, mid = (0+5)/2 = 2<br>
+                arr[2] = 10 ← 12 > 10 ← البحث في النصف الأيمن<br>
+                low = 3, high = 5, mid = (3+5)/2 = 4<br>
+                arr[4] = 15 ← 12 < 15 ← البحث في النصف الأيسر<br>
+                low = 3, high = 3, mid = (3+3)/2 = 3<br>
+                arr[3] = 12 ← تم العثور عليه</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">public int binarySearch(int[] arr, int target) {</span>
+<span class="code-line">    int low = 0, high = arr.Length - 1;</span>
+<span class="code-line">    </span>
+<span class="code-line">    while (low <= high) {</span>
+<span class="code-line">        int mid = (low + high) / 2;</span>
+<span class="code-line">        if (target == arr[mid])</span>
+<span class="code-line">            return mid;</span>
+<span class="code-line">        if (target < arr[mid]) {</span>
+<span class="code-line">            high = mid - 1;</span>
+<span class="code-line">        } else {</span>
+<span class="code-line">            low = mid + 1;</span>
+<span class="code-line">        }</span>
+<span class="code-line">    }</span>
+<span class="code-line">    return -1;</span>
+<span class="code-line">}</span>
+            </div>
+        </section>
+        
+        <!-- 4. الخوارزميات التعاودية -->
+        <section id="recursive-algorithms">
+            <h2>4. الخوارزميات التعاودية (Recursive Algorithms)</h2>
+            
+            <h3>4.1 التعاودية (Recursion)</h3>
+            <p>تضمن مبدأ التعاودية أو الاستدعاء الذاتي في عملها على تجزئة المشكلة الكبيرة إلى مشاكل أصغر منها وتستمر بالتجزئة حتى تصل إلى مشكلة بسيطة قابلة للحل وتسمى الحالة الأساسية (Base Case).</p>
+            
+            <h4>مثال: عاملي عدد (Factorial)</h4>
+            <p>حيث يعطى قانون العاملي بالشكل التالي:</p>
+            <div class="code">
+<span class="code-line">n! = n × (n - 1) × (n - 2) × (n - 3) × ... × 1</span>
+            </div>
+            
+            <p>وباستخدام التعاودية:</p>
+            <div class="code">
+<span class="code-line">n! = n × (n - 1)!</span>
+<span class="code-line">1! = 1  &  0! = 1  : base case</span>
+            </div>
+            
+            <div class="example">
+                <div class="example-title">مثال حساب 5!:</div>
+                <p>5! = 5 × 4!<br>
+                4! = 4 × 3!<br>
+                3! = 3 × 2!<br>
+                2! = 2 × 1!<br>
+                1! = 1 (base case)<br><br>
+                بالتعويض:<br>
+                2! = 2 × 1 = 2<br>
+                3! = 3 × 2 = 6<br>
+                4! = 4 × 6 = 24<br>
+                5! = 5 × 24 = 120</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">int factorial(int num) {</span>
+<span class="code-line">    if (num == 0 || num == 1)</span>
+<span class="code-line">        return 1;</span>
+<span class="code-line">    return num * factorial(num - 1);</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <h4>مثال: سلسلة فيبوناتشي (Fibonacci Sequence)</h4>
+            <p>كل عنصر في السلسلة هو مجموع القيمتين السابقتين:</p>
+            <div class="code">
+<span class="code-line">f(n) = n, إذا كان n = 0 أو n = 1</span>
+<span class="code-line">f(n) = f(n - 1) + f(n - 2), إذا كان n > 1</span>
+            </div>
+            
+            <div class="example">
+                <div class="example-title">أول 8 أعداد في سلسلة فيبوناتشي:</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>n</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fib(n)</td><td>0</td><td>1</td><td>1</td><td>2</td><td>3</td><td>5</td><td>8</td><td>13</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">int fibonacci(int num) {</span>
+<span class="code-line">    if (num == 0 || num == 1)</span>
+<span class="code-line">        return num;</span>
+<span class="code-line">    return fibonacci(num - 1) + fibonacci(num - 2);</span>
+<span class="code-line">}</span>
+            </div>
+        </section>
+        
+        <!-- 5. هياكل البيانات -->
+        <section id="data-structures">
+            <h2>5. هياكل البيانات (Data Structures)</h2>
+            
+            <p>بنية المعطيات هي طريقة علمية لتنظيم البيانات في الذاكرة بحيث يمكن استخدامها بكفاءة. وهي أساسية لتخزين البيانات، حيث أن التكامل بين هياكل المعطيات والخوارزميات ضروري لتطوير برامج عالية الأداء.</p>
+            
+            <h3>من أشهر أنواع هياكل البيانات:</h3>
+            
+            <div class="grid">
+                <div class="card">
+                    <h4>المصفوفات (Arrays)</h4>
+                    <p>هي بنية معطيات خطية تخزن العناصر في مواقع متجاورة من الذاكرة، مما يسمح بالوصول إلى أي عنصر منها بشكل مباشر.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>اللوائح المرتبطة (Linked Lists)</h4>
+                    <p>عبارة عن مجموعة من العقد حيث تشير كل عقدة إلى العقدة التي تليها، مما يتيح عمليات إدراج وحذف فعالة مقارنة بالمصفوفات.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>المكدس (Stack)</h4>
+                    <p>هي بنية آخر من يدخل هو أول من يخرج (LIFO) فهي تشبه كومة من الأطباق الموضوعة فوق بعضها.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>الأرتال (Queues)</h4>
+                    <p>هي بنية أول من يدخل هو أول من يخرج (FIFO) فهي تشبه صف الانتظار.</p>
+                </div>
+                
+                <div class="card">
+                    <h4>الأشجار والرسوم البيانية (Trees & Graphs)</h4>
+                    <p>هي بنى معطيات غير خطية تستخدم لتمثيل البيانات الهرمية مثل شجرة العائلة أو الشبكات مثل خرائط GPS.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. اللوائح المرتبطة -->
+        <section id="linked-lists">
+            <h2>6. اللوائح المرتبطة (Linked Lists)</h2>
+            
+            <p>اللوائح المرتبطة هي بنى معطيات خطية تتكون من سلسلة من العناصر المرتبطة ببعضها البعض بواسطة المؤشرات، فكل عنصر من هذه السلسلة يشير إلى مكان العنصر الذي يليه.</p>
+            
+            <div class="note">
+                <strong>ميزة اللوائح المرتبطة عن المصفوفة:</strong> عدم الحاجة لمعرفة حجم العناصر مسبقاً، حيث توفر إمكانية إضافة العناصر أو حذفها وقت التشغيل، دون الحاجة إلى نقل العناصر إلى قائمة أخرى.
+            </div>
+            
+            <h3>هيكل العقدة (Node Structure):</h3>
+            <div class="visual-diagram">
+                <p>بنية العقدة في اللائحة المرتبطة الأحادية:</p>
+                <div class="code">
+<span class="code-line">| Data | Next | null |</span>
+                </div>
+            </div>
+            
+            <h3>أنواع اللوائح المرتبطة:</h3>
+            
+            <h4>1. اللائحة المرتبطة الأحادية:</h4>
+            <p>تكون فيها العقدة مؤلفة من مؤشر واحد فقط next يشير إلى العقدة التالية.</p>
+            <div class="visual-diagram">
+                <p>First → A → Next → B → Next → C → Next → null</p>
+                <p>آخر عقدة من اللائحة المرتبطة تشير دائماً إلى null.</p>
+            </div>
+            
+            <h4>2. اللائحة المرتبطة المضاعفة:</h4>
+            <p>كل عقدة فيها مؤلفة من مؤشرين: أحدها يشير إلى العقدة التالية next والأخر يشير إلى العقدة السابقة prev.</p>
+            <div class="visual-diagram">
+                <p>null ↔ A ↔ B ↔ C ↔ null</p>
+            </div>
+            
+            <h4>3. اللائحة المرتبطة الدائرية:</h4>
+            <p>تشبه اللائحة المرتبطة الأحادية إلا أن آخر عقدة فيها تشير إلى أول عقدة.</p>
+            <div class="visual-diagram">
+                <p>First → A → B → C → First (دائري)</p>
+            </div>
+            
+            <h3>العمليات على اللوائح المرتبطة:</h3>
+            <ul>
+                <li>إضافة عقدة إلى (بداية، منتصف، نهاية) اللائحة المرتبطة</li>
+                <li>حذف عقدة من (بداية، منتصف، نهاية) اللائحة المرتبطة</li>
+                <li>البحث عن قيمة معينة داخل اللائحة المرتبطة</li>
+                <li>طباعة عناصر اللائحة</li>
+                <li>هل اللائحة فارغة أم لا</li>
+                <li>الحصول على العنصر في المقدمة/النهاية</li>
+                <li>معرفة عدد عناصر اللائحة</li>
+                <li>ترتيب عناصر اللائحة المرتبطة</li>
+                <li>عكس عناصر اللائحة المرتبطة</li>
+            </ul>
+            
+            <h4>1. إضافة عقدة إلى بداية اللائحة:</h4>
+            <div class="visual-diagram">
+                <p>قبل: First → A → B → C → null</p>
+                <p>بعد إضافة D: First → D → A → B → C → null</p>
+            </div>
+            <div class="code">
+<span class="code-line">public void addFirst(int data) {</span>
+<span class="code-line">    Node newNode = new Node(data);</span>
+<span class="code-line">    if (first == null) {</span>
+<span class="code-line">        first = newNode;</span>
+<span class="code-line">    } else {</span>
+<span class="code-line">        newNode.Next = first;</span>
+<span class="code-line">        first = newNode;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    Count++;</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <h4>2. إضافة عقدة إلى نهاية اللائحة:</h4>
+            <div class="visual-diagram">
+                <p>قبل: First → A → B → C → null</p>
+                <p>بعد إضافة D: First → A → B → C → D → null</p>
+            </div>
+            <div class="code">
+<span class="code-line">public void addLast(int data) {</span>
+<span class="code-line">    Node newNode = new Node(data);</span>
+<span class="code-line">    if (first == null) {</span>
+<span class="code-line">        first = newNode;</span>
+<span class="code-line">    } else {</span>
+<span class="code-line">        Node current = first;</span>
+<span class="code-line">        while (current.Next != null) {</span>
+<span class="code-line">            current = current.Next;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        current.Next = newNode;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    Count++;</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <h4>3. إضافة عقدة إلى منتصف اللائحة (بترتيب تنازلي):</h4>
+            <div class="code">
+<span class="code-line">public void append(int data) // Descending order list</span>
+<span class="code-line">{</span>
+<span class="code-line">    Node newNode = new Node(data);</span>
+<span class="code-line">    if (first == null || first.Data <= newNode.Data)</span>
+<span class="code-line">    {</span>
+<span class="code-line">        newNode.Next = first;</span>
+<span class="code-line">        first = newNode;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    else</span>
+<span class="code-line">    {</span>
+<span class="code-line">        Node prev,current;</span>
+<span class="code-line">        current = first.Next;</span>
+<span class="code-line">        prev = first;</span>
+<span class="code-line">        while (current != null && current.Data >= newNode.Data)</span>
+<span class="code-line">        {</span>
+<span class="code-line">            prev = current;</span>
+<span class="code-line">            current = current.Next;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        prev.Next = newNode;</span>
+<span class="code-line">        newNode.Next = current;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    Count++;</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <h4>4. إضافة عقدة إلى منتصف اللائحة (بترتيب غير مرتب):</h4>
+            <div class="code">
+<span class="code-line">public void appendInOrder(int data, int index) // Unordered list</span>
+<span class="code-line">{</span>
+<span class="code-line">    Node newNode = new Node(data);</span>
+<span class="code-line">    if (first == null || index == 1)</span>
+<span class="code-line">    {</span>
+<span class="code-line">        newNode.Next = first;</span>
+<span class="code-line">        first = newNode;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    else</span>
+<span class="code-line">    {</span>
+<span class="code-line">        int c = 2;</span>
+<span class="code-line">        Node prev, current;</span>
+<span class="code-line">        current = first.Next;</span>
+<span class="code-line">        prev = first;</span>
+<span class="code-line">        while (current != null && c != index)</span>
+<span class="code-line">        {</span>
+<span class="code-line">            prev = current;</span>
+<span class="code-line">            current = current.Next;</span>
+<span class="code-line">            c++;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        prev.Next = newNode;</span>
+<span class="code-line">        newNode.Next = current;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    Count++;</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <h4>5. حذف عقدة من بداية اللائحة:</h4>
+            <div class="code">
+<span class="code-line">public void deleteFirst() {</span>
+<span class="code-line">    if (first == null) {</span>
+<span class="code-line">        Console.WriteLine("The list is empty");</span>
+<span class="code-line">        return;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    first = first.Next;</span>
+<span class="code-line">    Count--;</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <h4>6. حذف عقدة من نهاية اللائحة:</h4>
+            <div class="code">
+<span class="code-line">public void deleteLast() {</span>
+<span class="code-line">    if (first == null) {</span>
+<span class="code-line">        Console.WriteLine("The list is empty");</span>
+<span class="code-line">        return;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    </span>
+<span class="code-line">    Node current = first;</span>
+<span class="code-line">    while (current.Next.Next != null) {</span>
+<span class="code-line">        current = current.Next;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    current.Next = null;</span>
+<span class="code-line">    Count--;</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <h4>7. حذف عقدة من منتصف اللائحة:</h4>
+            <div class="code">
+<span class="code-line">public void deleteElement(int target) {</span>
+<span class="code-line">    if (first == null) {</span>
+<span class="code-line">        Console.WriteLine("There are no elements in the list");</span>
+<span class="code-line">        return;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    if (first.Data == target) {</span>
+<span class="code-line">        deleteFirst();</span>
+<span class="code-line">        return;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    Node current, prev;</span>
+<span class="code-line">    prev = first;</span>
+<span class="code-line">    current = first.Next;</span>
+<span class="code-line">    while (current != null && current.Data != target) {</span>
+<span class="code-line">        prev = current;</span>
+<span class="code-line">        current = current.Next;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    </span>
+<span class="code-line">    if (current != null) {</span>
+<span class="code-line">        prev.Next = current.Next;</span>
+<span class="code-line">        Count--;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    else</span>
+<span class="code-line">        Console.WriteLine("there is no target");</span>
+<span class="code-line">}</span>
+            </div>
+            
+            <h4>8. البحث عن عقدة:</h4>
+            <div class="code">
+<span class="code-line">public int search(int target) {</span>
+<span class="code-line">    int c = 1;</span>
+<span class="code-line">    if (first == null) {</span>
+<span class="code-line">        Console.WriteLine("Empty");</span>
+<span class="code-line">        return -1;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    Node current = first;</span>
+<span class="code-line">    while (current != null && current.Data != target) {</span>
+<span class="code-line">        current = current.Next;</span>
+<span class="code-line">        c++;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    if (current != null) {</span>
+<span class="code-line">        return c;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    return -1;</span>
+<span class="code-line">}</span>
+            </div>
+        </section>
+        
+        <!-- 7. المكدس -->
+        <section id="stacks">
+            <h2>7. المكدس (Stack)</h2>
+            
+            <p>المكدس هي مجموعة مرتبة من العناصر حيث يمكن سحب أو إدخال عناصر جديدة من نهاية واحدة فقط تدعى قمة المكدس (top of stack) حيث أن آخر عنصر تم إضافة إلى قمة المكدس هو أول عنصر يتم سحبه منه وهذا ما يعبر عنه مبدأ (LIFO).</p>
+            
+            <div class="code">
+<span class="code-line">Last In First Out (LIFO)</span>
+            </div>
+            
+            <div class="visual-diagram">
+                <p>المكدس مع ثلاثة عناصر A, B, C:</p>
+                <div class="code">
+<span class="code-line">Top → C</span>
+<span class="code-line">       B</span>
+<span class="code-line">       A</span>
+                </div>
+            </div>
+            
+            <h3>العمليات على المكدس:</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>العملية</th>
+                        <th>الوصف</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Push</td><td>إضافة عنصر إلى قمة المكدس</td></tr>
+                    <tr><td>Pop</td><td>سحب عنصر من قمة المكدس</td></tr>
+                    <tr><td>Top / Peek</td><td>تحديد قيمة العنصر الموجود في قمة المكدس دون سحبه</td></tr>
+                    <tr><td>isEmpty</td><td>تحديد إذا كان المكدس فارغ أم لا</td></tr>
+                </tbody>
+            </table>
+            
+            <div class="note">
+                <strong>ملاحظات:</strong>
+                <ul>
+                    <li>العملية Push تطبق على أي مكدس</li>
+                    <li>العملية Pop لا يمكن أن تطبق على مكدس فارغ</li>
+                    <li>قبل تطبيق Pop يجب التأكد من أن المكدس غير فارغ بواسطة العملية isEmpty</li>
+                    <li>العملية Top لا يمكن تطبيقها على مكدس فارغ</li>
+                    <li>عند تطبيق العمليتين top و pop على مكدس فارغ، نحصل على حالة الجفاف (Underflow)</li>
+                </ul>
+            </div>
+            
+            <h3>طرق تنفيذ المكدس:</h3>
+            
+            <h4>1. باستخدام المصفوفة:</h4>
+            <p>توفر مكدساً ذو حجم ثابت، وهو فعال من حيث استخدام الذاكرة ولكنه قد يؤدي إلى مشاكل في تجاوز السعة إذا تم تقدير الحجم أقل من قيمته الحقيقية.</p>
+            
+            <h4>2. باستخدام اللوائح المرتبطة:</h4>
+            <p>توفر حجماً ديناميكياً، حيث يتزايد ويتقلص حجمه حسب الحاجة.</p>
+            
+            <h3>تطبيقات عملية للمكدس:</h3>
+            <ul>
+                <li><strong>إدارة استدعاء الطرائق:</strong> حيث يستخدم مكدس الاستدعاءات لتعقب استدعاءات الطرائق النشطة وعناوين إرجاعها</li>
+                <li><strong>آليات التراجع (Undo):</strong> تستخدم بعض التطبيقات مثل محررات النصوص، المكدس لتخزين سجل إجراءات المستخدم</li>
+                <li><strong>سجل تصفح الويب:</strong> يستخدم زر الرجوع في متصفح الويب مكدساً لتخزين عناوين URL التي تمت زيارتها</li>
+                <li><strong>تقييم التعابير وتحليل بناء الجملة:</strong> تستخدم المترجعات المكدسات للتحقق من توازن الأقواس ( ) { } [ ] وتقييم التعابير الحسابية بكفاءة</li>
+            </ul>
+            
+            <h3>التحويل من الصيغة Infix إلى الصيغة Postfix:</h3>
+            
+            <h4>الصيغة Infix:</h4>
+            <p>عند إجراء عملية الجمع بتطبيق العملية + على المتحولين A, B فإننا نكتب الجمع بالشكل التالي A+B هذا ما يسمى <strong>بالتدوين الوسطي</strong>.</p>
+            
+            <h4>الصيغ الأخرى:</h4>
+            <ul>
+                <li><strong>التدوين المسبق (prefix):</strong> +AB</li>
+                <li><strong>التدوين الملحق (postfix):</strong> AB+</li>
+            </ul>
+            
+            <div class="note">
+                <strong>ملاحظة:</strong> إن التنفيذ الفعلي للعملية الحسابية يكون بالتدوين postfix حيث تقوم أغلب المترجحات بتحويل جميع الصيغ إلى الصيغة Postfix لتنفيذها.
+            </div>
+            
+            <h4>ترتيب الأولويات:</h4>
+            <ol class="algorithm-steps">
+                <li>الأقواس</li>
+                <li>الرفع إلى قوة</li>
+                <li>الضرب والقسمة</li>
+                <li>الجمع والطرح</li>
+            </ol>
+            
+            <div class="example">
+                <div class="example-title">أمثلة على التحويل:</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Infix</th>
+                            <th>Postfix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>A+B*C</td><td>ABC*+</td></tr>
+                        <tr><td>(A+B)*C</td><td>AB+C*</td></tr>
+                        <tr><td>(A+B)^C-D*E</td><td>AB+C^DE*-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- 8. الأشجار الثنائية -->
+        <section id="trees">
+            <h2>8. الأشجار الثنائية (Binary Trees)</h2>
+            
+            <p>هي بنى معطيات غير خطية مؤلفة من مجموعة العناصر المرتبطة ببعضها البعض والمنظمة تنظيماً هرمياً. يسمى كل عنصر منها بالعقدة (Node)، وتبدأ بعقدة رئيسية تسمى الجذر (Root).</p>
+            
+            <div class="visual-diagram">
+                <p>مثال على شجرة ثنائية:</p>
+                <div class="code">
+<span class="code-line">        A (Root)</span>
+<span class="code-line">       / \</span>
+<span class="code-line">      B   C</span>
+<span class="code-line">     / \   \</span>
+<span class="code-line">    D   E   F</span>
+<span class="code-line">   /     \</span>
+<span class="code-line">  G       H</span>
+                </div>
+            </div>
+            
+            <h3>بعض المفاهيم الأساسية في الأشجار الثنائية:</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>المصطلح</th>
+                        <th>التعريف</th>
+                        <th>مثال</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>العقدة (Node)</td><td>جزء أو مكان حفظ البيانات</td><td>كل حرف في الشجرة</td></tr>
+                    <tr><td>الجذر (Root)</td><td>العقدة العليا للشجرة</td><td>A</td></tr>
+                    <tr><td>العقدة الفرعية (Child)</td><td>العقد التي تتفزع من أسفل كل عقدة</td><td>B, C, D, E, F, G, H</td></tr>
+                    <tr><td>العقدة الأصل (Parent)</td><td>العقدة التي لها ابن واحد على الأقل</td><td>A, B, C, D, E</td></tr>
+                    <tr><td>الورقة (Leaf)</td><td>العقدة التي ليس لها أبناء</td><td>G, H, F</td></tr>
+                    <tr><td>الحافة (Edge)</td><td>المسار الذي يربط بين عقدتي الأب والابن</td><td>7 حواف في الشكل أعلاه</td></tr>
+                    <tr><td>الأشقاء (Siblings)</td><td>العقد الفرعية من نفس الأصل</td><td>B و C، D و E</td></tr>
+                    <tr><td>الارتفاع (Height)</td><td>طول أطول مسار من الجذر إلى الورقة</td><td>Height(A)=3</td></tr>
+                    <tr><td>المستوى (Level)</td><td>عدد الحواف من الجذر إلى عقدة معينة</td><td>Level(A)=0, Level(G)=3</td></tr>
+                    <tr><td>درجة العقدة (Degree)</td><td>عدد الأبناء المباشرين للعقدة</td><td>Degree(A)=2, Degree(B)=2</td></tr>
+                </tbody>
+            </table>
+            
+            <h3>أنواع الأشجار الثنائية:</h3>
+            
+            <h4>1. الشجرة الثنائية الممتلئة (Full Binary Tree):</h4>
+            <p>هي شجرة ثنائية كل عقدة فيها لديها ابناً أو ليس لها أبناء، لا توجد عقدة لها ابن واحد فقط.</p>
+            
+            <h4>2. الشجرة الثنائية الكاملة (Complete Binary Tree):</h4>
+            <p>نقول عن الشجرة الثنائية أنها كاملة إذا كانت جميع مستوياتها مملوءة تماماً باستثناء المستوى الأخير، حيث أن جميع العقد في المستوى الأخير متلاصقة من اليسار إلى اليمين.</p>
+            
+            <h4>3. الشجرة الثنائية التامة (Perfect Binary Tree):</h4>
+            <p>هي شجرة كاملة ومكتملة، لكل عقدة داخلية ابناً، وجميع العقد الورقية تقع في نفس المستوى.</p>
+            
+            <h4>4. الشجرة الثنائية المتوازنة (Balanced Binary Tree):</h4>
+            <p>هي شجرة يكون فيها فرق الارتفاع بين الشجرتين الفرعيتين اليمنى واليسرى لأي عقدة واحداً على الأكثر. مثل: أشجار AVL وأشجار Red-Black.</p>
+            
+            <h4>5. شجرة البحث الثنائي (BST):</h4>
+            <p>هي شجرة ثنائية تكون العناصر مرتبة فيها بطريقة خاصة، حيث تكون العناصر التي هي أصغر من الجذر على اليسار والعناصر التي تكون أكبر من الجذر على اليمين.</p>
+            
+            <div class="note">
+                <strong>ملاحظة:</strong> في شجرة البحث الثنائي (BST)، يجب أن يكون الفرع الأيمن والأيسر شجرتي بحث ثنائيين أيضاً، ولا يمكن أن تكون هناك عقد متشابهة.
+            </div>
+            
+            <h3>العمليات الأساسية على الأشجار الثنائية:</h3>
+            <ul>
+                <li><strong>الإضافة (Insertion):</strong> إضافة عقدة جديدة إلى الشجرة مع الحفاظ على خصائصها البنيوية</li>
+                <li><strong>الحذف (Deletion):</strong> إزالة عقدة من الشجرة وإعادة ترتيب العقد المتبقية للحفاظ على بنية الشجرة</li>
+                <li><strong>البحث (Searching):</strong> إيجاد عقدة ذات قيمة محددة، وهو أمر فعال للغاية في أشجار البحث الثنائية المتوازنة</li>
+                <li><strong>العبور (Traversal):</strong> زيارة كل عقدة في الشجرة مرة واحدة فقط بطريقة منهجية</li>
+            </ul>
+            
+            <h3>طرق العبور (Traversal) في الأشجار الثنائية:</h3>
+            
+            <h4>العبور بالعمق أولاً (Depth First Traversal - DFT):</h4>
+            <ol class="algorithm-steps">
+                <li><strong>العبور المسبق (Preorder):</strong> جذر – يسار – يمين<br>
+                مثال: A, B, D, G, E, H, C, F</li>
+                <li><strong>العبور الوسطى (Inorder):</strong> يسار – جذر – يمين<br>
+                مثال: G, D, B, H, E, A, C, F</li>
+                <li><strong>العبور اللاحق (Postorder):</strong> يسار – يمين – جذر<br>
+                مثال: G, D, H, E, B, F, C, A</li>
+            </ol>
+            
+            <div class="note">
+                <strong>ملاحظة:</strong> التسمية مكتسبة من موقع الجذر في العبور.
+            </div>
+            
+            <h4>العبور بالعرض أولاً (Breadth First Traversal):</h4>
+            <p>وتسمى أيضاً Level Order، حيث تبدأ بالجذر ثم تنتقل إلى العقد المجاورة وتبدأ عملية البحث في نفس المستوى قبل الانتقال إلى المستوى اللاحق وتكون من اليسار إلى اليمين.<br>
+            مثال: A, B, C, D, E, F, G, H</p>
+            
+            <h3>مثال على شجرة البحث الثنائي:</h3>
+            <div class="example">
+                <div class="example-title">مثال عملي:</div>
+                <p>بفرض أن لدينا الأعداد التالية: [1, 6, 3, 8, 7, 10, 4, 5] عند إضافتها إلى شجرة البحث الثنائي:</p>
+                
+                <div class="visual-diagram">
+                    <div class="code">
+<span class="code-line">        5</span>
+<span class="code-line">       / \</span>
+<span class="code-line">      3   6</span>
+<span class="code-line">     / \   \</span>
+<span class="code-line">    1   4   8</span>
+<span class="code-line">           / \</span>
+<span class="code-line">          7   10</span>
+                    </div>
+                </div>
+                
+                <p><strong>العبور المسبق (Preorder):</strong> 5 - 3 - 1 - 4 - 6 - 8 - 7 - 10</p>
+                <p><strong>العبور الوسطى (Inorder):</strong> 1 - 3 - 4 - 5 - 6 - 7 - 8 - 10</p>
+                <p><strong>العبور اللاحق (Postorder):</strong> 1 - 4 - 3 - 7 - 10 - 8 - 6 - 5</p>
+            </div>
+            
+            <h3>تمثيل الشجرة باستخدام الأقواس (Parenthetical Notation):</h3>
+            <p>كتابة الشجرة مع تحديد أبناء كل عقدة داخل الأقواس () بدءاً من الجذر.</p>
+            <div class="example">
+                <div class="example-title">مثال:</div>
+                <p>الشجرة في المثال السابق يمكن تمثيلها بالشكل التالي:</p>
+                <div class="code">
+<span class="code-line">A (B (C (H) F) D (E(G)))</span>
+                </div>
+            </div>
+            
+            <div class="note">
+                <strong>تمرين:</strong> أضف الأعداد التالية: 10, 12, 8, 3, 20, 7, 1, 14, 4, 27 إلى شجرة البحث الثنائية ثم قم بالعبور داخل الشجرة بالطرق الثلاثة للعبور بالعمق أولاً.
+            </div>
+        </section>
+        
+        <!-- 9. تحويل الأعداد إلى النظام الثنائي باستخدام المكدس -->
+        <section id="binary-conversion">
+            <h2>9. تحويل الأعداد إلى النظام الثنائي باستخدام المكدس</h2>
+            
+            <p>يمكن استخدام المكدس لتحويل الأعداد الصحيحة الموجبة من النظام العشري إلى النظام الثنائي بطريقة بسيطة وفعالة.</p>
+            
+            <h3>خوارزمية التحويل:</h3>
+            <ol class="algorithm-steps">
+                <li>قم بإنشاء مكدس فارغ</li>
+                <li>طالما العدد أكبر من الصفر، قم بما يلي:
+                    <ul>
+                        <li>احسب باقي قسمة العدد على 2 (العدد % 2)</li>
+                        <li>ادفع الناتج (0 أو 1) إلى المكدس</li>
+                        <li>اقسم العدد على 2 (العدد = العدد / 2)</li>
+                    </ul>
+                </li>
+                <li>اطبع جميع عناصر المكدس (من الأعلى إلى الأسفل) للحصول على التمثيل الثنائي</li>
+            </ol>
+            
+            <div class="example">
+                <div class="example-title">مثال: تحويل العدد 13 إلى النظام الثنائي</div>
+                
+                <p><strong>الخطوات:</strong></p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>العدد</th>
+                            <th>العدد % 2</th>
+                            <th>المكدس</th>
+                            <th>العدد الجديد</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>13</td><td>1</td><td>[1]</td><td>6</td></tr>
+                        <tr><td>6</td><td>0</td><td>[1, 0]</td><td>3</td></tr>
+                        <tr><td>3</td><td>1</td><td>[1, 0, 1]</td><td>1</td></tr>
+                        <tr><td>1</td><td>1</td><td>[1, 0, 1, 1]</td><td>0</td></tr>
+                    </tbody>
+                </table>
+                
+                <p><strong>النتيجة:</strong> 1101 (يقرأ من أسفل المكدس إلى أعلى: 1 ← 1 ← 0 ← 1)</p>
+                <p>التحقق: 1×8 + 1×4 + 0×2 + 1×1 = 8 + 4 + 0 + 1 = 13 ✓</p>
+            </div>
+            
+            <h4>الكود التنفيذي بلغة C#:</h4>
+            <div class="code">
+<span class="code-line">using System.Collections.Generic;</span>
+<span class="code-line"></span>
+<span class="code-line">class Program {</span>
+<span class="code-line">    static void Main() {</span>
+<span class="code-line">        Console.Write("أدخل عدداً صحيحاً موجباً: ");</span>
+<span class="code-line">        int number = int.Parse(Console.ReadLine());</span>
+<span class="code-line">        </span>
+<span class="code-line">        if (number < 0) {</span>
+<span class="code-line">            Console.WriteLine("العدد يجب أن يكون موجباً!");</span>
+<span class="code-line">            return;</span>
+<span class="code-line">        }</span>
+<span class="code-line">        </span>
+<span class="code-line">        Stack<int> stack = new Stack<int>();</span>
+<span class="code-line">        int temp = number;</span>
+<span class="code-line">        </span>
+<span class="code-line">        if (temp == 0) {</span>
+<span class="code-line">            stack.Push(0);</span>
+<span class="code-line">        } else {</span>
+<span class="code-line">            while (temp > 0) {</span>
+<span class="code-line">                int remainder = temp % 2;</span>
+<span class="code-line">                stack.Push(remainder);</span>
+<span class="code-line">                temp = temp / 2;</span>
+<span class="code-line">            }</span>
+<span class="code-line">        }</span>
+<span class="code-line">        </span>
+<span class="code-line">        Console.Write("التمثيل الثنائي للعدد " + number + " هو: ");</span>
+<span class="code-line">        while (stack.Count > 0) {</span>
+<span class="code-line">            Console.Write(stack.Pop());</span>
+<span class="code-line">        }</span>
+<span class="code-line">        Console.WriteLine();</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+            </div>
+        </section>
+        
+        <!-- 10. حل التمارين -->
+        <section id="exercises">
+            <h2>10. حل التمارين</h2>
+            
+            <!-- تمرين 1: تحويل من Infix إلى Postfix -->
+            <h3>التمرين 1: تحويل التعبيرات من الصيغة Infix إلى الصيغة Postfix</h3>
+            
+            <h4>1. (A+B)*(C-D)</h4>
+            <div class="example">
+                <p><strong>الحل:</strong></p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Symbol</th>
+                            <th>العملية</th>
+                            <th>سلسلة الخرج</th>
+                            <th>المكدس</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>(</td><td>Push</td><td></td><td>(</td></tr>
+                        <tr><td>A</td><td>أضف للخرج</td><td>A</td><td>(</td></tr>
+                        <tr><td>+</td><td>Push</td><td>A</td><td>(+</td></tr>
+                        <tr><td>B</td><td>أضف للخرج</td><td>AB</td><td>(+</td></tr>
+                        <tr><td>)</td><td>Pop حتى (</td><td>AB+</td><td></td></tr>
+                        <tr><td>*</td><td>Push</td><td>AB+</td><td>*</td></tr>
+                        <tr><td>(</td><td>Push</td><td>AB+</td><td>*(</td></tr>
+                        <tr><td>C</td><td>أضف للخرج</td><td>AB+C</td><td>*(</td></tr>
+                        <tr><td>-</td><td>Push</td><td>AB+C</td><td>*(-</td></tr>
+                        <tr><td>D</td><td>أضف للخرج</td><td>AB+CD</td><td>*(-</td></tr>
+                        <tr><td>)</td><td>Pop حتى (</td><td>AB+CD-</td><td>*</td></tr>
+                        <tr><td></td><td>Pop المتبقي</td><td>AB+CD-*</td><td></td></tr>
+                    </tbody>
+                </table>
+                <p><strong>النتيجة:</strong> AB+CD-*</p>
+            </div>
+            
+            <h4>2. A-B/(C*D^E^F)</h4>
+            <div class="example">
+                <p><strong>الحل:</strong></p>
+                <p>بعد تطبيق الخوارزمية خطوة بخطوة:</p>
+                <p><strong>النتيجة:</strong> ABCDEF^^*/−</p>
+                <p><strong>شرح مختصر:</strong></p>
+                <p>1. A → الخرج: A</p>
+                <p>2. - → المكدس: -</p>
+                <p>3. B → الخرج: AB</p>
+                <p>4. / → المكدس: -/ (لأن / لها أولوية أعلى من -)</p>
+                <p>5. ( → المكدس: -/(</p>
+                <p>6. C → الخرج: ABC</p>
+                <p>7. * → المكدس: -/(*</p>
+                <p>8. D → الخرج: ABCD</p>
+                <p>9. ^ → المكدس: -/(*^</p>
+                <p>10. E → الخرج: ABCDE</p>
+                <p>11. ^ → المكدس: -/(*^^ (لأن ^ له نفس الأولوية وينفذ من اليمين لليسار)</p>
+                <p>12. F → الخرج: ABCDEF</p>
+                <p>13. ) → Pop حتى (: ABCDEF^^*</p>
+                <p>14. Pop المتبقي: ABCDEF^^*/−</p>
+            </div>
+            
+            <h4>3. A^B*C-D+E/F/(G+H)</h4>
+            <div class="example">
+                <p><strong>النتيجة:</strong> AB^C*D-EF/GH+/+</p>
+                <p><strong>شرح مختصر:</strong></p>
+                <p>الترتيب حسب الأولوية: ^ ثم * ثم / ثم + ثم -</p>
+            </div>
+            
+            <h4>4. (A+B)^C-D*E</h4>
+            <div class="example">
+                <p><strong>النتيجة:</strong> AB+C^DE*-</p>
+            </div>
+            
+            <h4>5. A*B-C+D^(E+F)</h4>
+            <div class="example">
+                <p><strong>النتيجة:</strong> AB*C-EF+^+</p>
+            </div>
+            
+            <h4>6. A-E*(B-C)^D</h4>
+            <div class="example">
+                <p><strong>النتيجة:</strong> AEBC-D^*-</p>
+            </div>
+            
+            <h4>7. (A+B)^C^D*E</h4>
+            <div class="example">
+                <p><strong>النتيجة:</strong> AB+C^D^E*</p>
+                <p><strong>ملاحظة:</strong> ^^ ينفذ من اليمين إلى اليسار، لذلك A+B)^C^D تعني ((A+B)^C)^D)</p>
+            </div>
+            
+            <!-- تمرين 2: شجرة البحث الثنائية -->
+            <h3>التمرين 2: إضافة أعداد إلى شجرة البحث الثنائية</h3>
+            
+            <h4>المطلوب: أضف الأعداد التالية: 10, 12, 8, 3, 20, 7, 1, 14, 4, 27</h4>
+            
+            <div class="example">
+                <p><strong>الحل خطوة بخطوة:</strong></p>
+                
+                <p><strong>1. إضافة 10:</strong> (الجذر)<br>
+                الشجرة: [10]</p>
+                
+                <p><strong>2. إضافة 12:</strong> 12 > 10 ← إضافة إلى اليمين<br>
+                الشجرة:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12</p>
+                
+                <p><strong>3. إضافة 8:</strong> 8 < 10 ← إضافة إلى اليسار<br>
+                الشجرة:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;12</p>
+                
+                <p><strong>4. إضافة 3:</strong> 3 < 10 ← اذهب لليسار ← 3 < 8 ← إضافة إلى يسار 8<br>
+                الشجرة:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;12<br>
+                &nbsp;&nbsp;3</p>
+                
+                <p><strong>5. إضافة 20:</strong> 20 > 10 ← اذهب لليمين ← 20 > 12 ← إضافة إلى يمين 12<br>
+                الشجرة:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;12<br>
+                &nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20</p>
+                
+                <p><strong>6. إضافة 7:</strong> 7 < 10 ← اذهب لليسار ← 7 < 8 ← إضافة إلى يمين 8<br>
+                الشجرة:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;12<br>
+                &nbsp;&nbsp;3&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;20</p>
+                
+                <p><strong>7. إضافة 1:</strong> 1 < 10 ← اذهب لليسار ← 1 < 8 ← اذهب لليسار ← 1 < 3 ← إضافة إلى يسار 3<br>
+                الشجرة:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;12<br>
+                &nbsp;&nbsp;3&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;20<br>
+                &nbsp;1</p>
+                
+                <p><strong>8. إضافة 14:</strong> 14 > 10 ← اذهب لليمين ← 14 > 12 ← إضافة إلى يسار 20<br>
+                الشجرة:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;12<br>
+                &nbsp;&nbsp;3&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;20<br>
+                &nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14</p>
+                
+                <p><strong>9. إضافة 4:</strong> 4 < 10 ← اذهب لليسار ← 4 < 8 ← اذهب لليمين ← 4 > 3 ← إضافة إلى يمين 3<br>
+                الشجرة:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;12<br>
+                &nbsp;&nbsp;3&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;20<br>
+                &nbsp;1&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;14</p>
+                
+                <p><strong>10. إضافة 27:</strong> 27 > 10 ← اذهب لليمين ← 27 > 12 ← اذهب لليمين ← 27 > 20 ← إضافة إلى يمين 20<br>
+                الشجرة النهائية:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20<br>
+                &nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14&nbsp;&nbsp;&nbsp;&nbsp;27</p>
+                
+                <p><strong>العبور المسبق (Preorder):</strong> 10, 8, 3, 1, 7, 4, 12, 20, 14, 27</p>
+                <p><strong>العبور الوسطى (Inorder):</strong> 1, 3, 4, 7, 8, 10, 12, 14, 20, 27</p>
+                <p><strong>العبور اللاحق (Postorder):</strong> 1, 4, 7, 3, 8, 14, 27, 20, 12, 10</p>
+            </div>
+            
+            <!-- تمرين 3: الخوارزميات التعاودية -->
+            <h3>التمرين 3: الخوارزميات التعاودية</h3>
+            
+            <h4>1. حساب قوة عدد بالطريقة التعاودية</h4>
+            <div class="example">
+                <p><strong>الخوارزمية:</strong><br>
+                Base case: إذا كان الأس = 0، النتيجة = 1<br>
+                Otherwise: النتيجة = الأساس × (الأساس^(الأس-1))</p>
+                
+                <p><strong>الكود التنفيذي:</strong></p>
+                <div class="code">
+<span class="code-line">static double Power(double baseNum, int exponent) {</span>
+<span class="code-line">    // الحالة الأساسية</span>
+<span class="code-line">    if (exponent == 0)</span>
+<span class="code-line">        return 1;</span>
+<span class="code-line">    </span>
+<span class="code-line">    // الحالة التعاودية</span>
+<span class="code-line">    return baseNum * Power(baseNum, exponent - 1);</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">// مثال الاستخدام</span>
+<span class="code-line">static void Main() {</span>
+<span class="code-line">    Console.WriteLine(Power(2, 3));  // الناتج: 8</span>
+<span class="code-line">    Console.WriteLine(Power(5, 2));  // الناتج: 25</span>
+<span class="code-line">    Console.WriteLine(Power(3, 4));  // الناتج: 81</span>
+<span class="code-line">}</span>
+                </div>
+            </div>
+            
+            <h4>2. حساب القاسم المشترك الأكبر (GCD) لعددين</h4>
+            <div class="example">
+                <p><strong>الخوارزمية (خوارزمية إقليدس):</strong><br>
+                Base case: إذا كان b = 0، النتيجة = a<br>
+                Otherwise: النتيجة = GCD(b, a % b)</p>
+                
+                <p><strong>الكود التنفيذي:</strong></p>
+                <div class="code">
+<span class="code-line">static int GCD(int a, int b) {</span>
+<span class="code-line">    // الحالة الأساسية</span>
+<span class="code-line">    if (b == 0)</span>
+<span class="code-line">        return a;</span>
+<span class="code-line">    </span>
+<span class="code-line">    // الحالة التعاودية</span>
+<span class="code-line">    return GCD(b, a % b);</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">// مثال الاستخدام</span>
+<span class="code-line">static void Main() {</span>
+<span class="code-line">    Console.WriteLine(GCD(48, 18));  // الناتج: 6</span>
+<span class="code-line">    Console.WriteLine(GCD(100, 75)); // الناتج: 25</span>
+<span class="code-line">    Console.WriteLine(GCD(17, 13));  // الناتج: 1 (أعداد أولية)</span>
+<span class="code-line">}</span>
+                </div>
+            </div>
+            
+            <h4>3. جمع الأعداد من 1 حتى n</h4>
+            <div class="example">
+                <p><strong>الخوارزمية:</strong><br>
+                Base case: إذا كان n = 1، النتيجة = 1<br>
+                Otherwise: النتيجة = n + Sum(n-1)</p>
+                
+                <p><strong>الكود التنفيذي:</strong></p>
+                <div class="code">
+<span class="code-line">static int Sum(int n) {</span>
+<span class="code-line">    // الحالة الأساسية</span>
+<span class="code-line">    if (n == 1)</span>
+<span class="code-line">        return 1;</span>
+<span class="code-line">    </span>
+<span class="code-line">    // الحالة التعاودية</span>
+<span class="code-line">    return n + Sum(n - 1);</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">// مثال الاستخدام</span>
+<span class="code-line">static void Main() {</span>
+<span class="code-line">    Console.WriteLine(Sum(5));   // الناتج: 15 (1+2+3+4+5)</span>
+<span class="code-line">    Console.WriteLine(Sum(10));  // الناتج: 55</span>
+<span class="code-line">    Console.WriteLine(Sum(100)); // الناتج: 5050</span>
+<span class="code-line">}</span>
+                </div>
+            </div>
+            
+            <h4>4. طباعة الأعداد من 1 حتى n</h4>
+            <div class="example">
+                <p><strong>الخوارزمية:</strong><br>
+                Base case: إذا كان n = 1، اطبع 1<br>
+                Otherwise: استدع الدالة لطباعة (n-1) ثم اطبع n</p>
+                
+                <p><strong>الكود التنفيذي:</strong></p>
+                <div class="code">
+<span class="code-line">static void PrintNumbers(int n) {</span>
+<span class="code-line">    // الحالة الأساسية</span>
+<span class="code-line">    if (n == 1) {</span>
+<span class="code-line">        Console.Write("1 ");</span>
+<span class="code-line">        return;</span>
+<span class="code-line">    }</span>
+<span class="code-line">    </span>
+<span class="code-line">    // الحالة التعاودية</span>
+<span class="code-line">    PrintNumbers(n - 1);</span>
+<span class="code-line">    Console.Write(n + " ");</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">// مثال الاستخدام</span>
+<span class="code-line">static void Main() {</span>
+<span class="code-line">    PrintNumbers(5);  // الناتج: 1 2 3 4 5</span>
+<span class="code-line">    Console.WriteLine();</span>
+<span class="code-line">    PrintNumbers(10); // الناتج: 1 2 3 4 5 6 7 8 9 10</span>
+<span class="code-line">}</span>
+                </div>
+            </div>
+            
+            <!-- تمرين 4: تطبيقات المكدس -->
+            <h3>التمرين 4: التحقق من توازن الأقواس باستخدام المكدس</h3>
+            
+            <div class="example">
+                <p><strong>المشكلة:</strong> كتابة دالة للتحقق مما إذا كانت الأقواس في تعبير ما متوازنة (لكل قوس فتح هناك قوس إغلاق مناظر).</p>
+                
+                <p><strong>الخوارزمية:</strong></p>
+                <ol class="algorithm-steps">
+                    <li>إنشاء مكدس فارغ</li>
+                    <li>اجتياز التعبير حرفاً حرفاً</li>
+                    <li>إذا كان الحرف قوس فتح (أو { أو [)، ادفعه إلى المكدس</li>
+                    <li>إذا كان الحرف قوس إغلاق (أو } أو ]):
+                        <ul>
+                            <li>إذا كان المكدس فارغاً، الإجابة خطأ</li>
+                            <li>اسحب عنصراً من المكدس وتحقق من أنه يقابل قوس الإغلاق</li>
+                        </ul>
+                    </li>
+                    <li>في النهاية، إذا كان المكدس فارغاً، الإجابة صحيح، وإلا خطأ</li>
+                </ol>
+                
+                <p><strong>الكود التنفيذي:</strong></p>
+                <div class="code">
+<span class="code-line">using System.Collections.Generic;</span>
+<span class="code-line"></span>
+<span class="code-line">static bool AreParenthesesBalanced(string expression) {</span>
+<span class="code-line">    Stack<char> stack = new Stack<char>();</span>
+<span class="code-line">    </span>
+<span class="code-line">    foreach (char ch in expression) {</span>
+<span class="code-line">        if (ch == '(' || ch == '{' || ch == '[') {</span>
+<span class="code-line">            stack.Push(ch);</span>
+<span class="code-line">        }</span>
+<span class="code-line">        else if (ch == ')' || ch == '}' || ch == ']') {</span>
+<span class="code-line">            if (stack.Count == 0)</span>
+<span class="code-line">                return false;</span>
+<span class="code-line">            </span>
+<span class="code-line">            char top = stack.Pop();</span>
+<span class="code-line">            </span>
+<span class="code-line">            if (!AreMatching(top, ch))</span>
+<span class="code-line">                return false;</span>
+<span class="code-line">        }</span>
+<span class="code-line">    }</span>
+<span class="code-line">    </span>
+<span class="code-line">    return stack.Count == 0;</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">static bool AreMatching(char opening, char closing) {</span>
+<span class="code-line">    return (opening == '(' && closing == ')') ||</span>
+<span class="code-line">           (opening == '{' && closing == '}') ||</span>
+<span class="code-line">           (opening == '[' && closing == ']');</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">// مثال الاستخدام</span>
+<span class="code-line">static void Main() {</span>
+<span class="code-line">    string[] tests = {</span>
+<span class="code-line">        "((2+3)*5)",           // صحيح</span>
+<span class="code-line">        "{(2+3)*[4-1]}",       // صحيح</span>
+<span class="code-line">        "((2+3)*5",            // خطأ (ينقص قوس إغلاق)</span>
+<span class="code-line">        "((2+3)*5))",          // خطأ (قوس إغلاق زائد)</span>
+<span class="code-line">        "({[2+3]*5})",         // صحيح</span>
+<span class="code-line">        "({[2+3]*5)}"          // خطأ (ترتيب غير صحيح)</span>
+<span class="code-line">    };</span>
+<span class="code-line">    </span>
+<span class="code-line">    foreach (string test in tests) {</span>
+<span class="code-line">        Console.WriteLine($"{test} : {AreParenthesesBalanced(test)}");</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+                </div>
+                
+                <p><strong>الإخراج المتوقع:</strong></p>
+                <div class="code">
+<span class="code-line">((2+3)*5) : True</span>
+<span class="code-line">{(2+3)*[4-1]} : True</span>
+<span class="code-line">((2+3)*5 : False</span>
+<span class="code-line">((2+3)*5)) : False</span>
+<span class="code-line">({[2+3]*5}) : True</span>
+<span class="code-line">({[2+3]*5)} : False</span>
+                </div>
+            </div>
+        </section>
+        
+        <!-- خاتمة -->
+        <section id="conclusion">
+            <h2>خاتمة</h2>
+            
+            <p>في هذا المرجع الشامل، تناولنا المفاهيم الأساسية للخوارزميات وهياكل البيانات، بدءاً من التعاريف الأساسية وصولاً إلى التطبيقات المتقدمة. تعلمنا:</p>
+            
+            <ol class="algorithm-steps">
+                <li><strong>مقدمة عن الخوارزميات وهياكل البيانات</strong> وعلاقتهما ببعضهما</li>
+                <li><strong>خوارزميات الفرز</strong> المختلفة (الفقاعي، الاختيار، الإقحام، الدمج، السريع) ومزايا وعيوب كل منها</li>
+                <li><strong>خوارزميات البحث</strong> (التسلسلي والثنائي) وكيفية اختيار الأنسب حسب الحالة</li>
+                <li><strong>الخوارزميات التعاودية</strong> ومبدأ الاستدعاء الذاتي مع أمثلة عملية</li>
+                <li><strong>هياكل البيانات</strong> الأساسية وأنواعها واستخداماتها</li>
+                <li><strong>اللوائح المرتبطة</strong> بأنواعها المختلفة والعمليات عليها</li>
+                <li><strong>المكدس</strong> ومبدأ LIFO وتطبيقاته العملية</li>
+                <li><strong>الأشجار الثنائية</strong> وأنواعها وطرق العبور فيها</li>
+                <li><strong>شجرة البحث الثنائي</strong> وكيفية بنائها واستخدامها للبحث بكفاءة</li>
+            </ol>
+            
+            <div class="note">
+                <p><strong>نصائح للتعلم:</strong></p>
+                <ul>
+                    <li>افهم الفكرة الرياضية وراء كل خوارزمية قبل الانتقال إلى التنفيذ</li>
+                    <li>تدرب على تنفيذ الخوارزميات يدوياً بأمثلة بسيطة</li>
+                    <li>قارن بين الخوارزميات المختلفة من حيث التعقيد الزمني والمساحي</li>
+                    <li>اختر الخوارزمية المناسبة للمشكلة التي تحاول حلها</li>
+                    <li>تدرب على حل التمارين والمسائل لتثبيت المفاهيم</li>
+                </ul>
+            </div>       
+        </section>
+        
+        <footer>
+            <p>مرجع شامل لخوارزميات وهياكل البيانات | Fidaa Muhimed</p>
+        </footer>
+    </div>
+</body>
+</html>
