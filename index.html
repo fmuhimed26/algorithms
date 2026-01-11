@@ -32,87 +32,12 @@
             --success: #10b981;
             --warning: #f59e0b;
         }
-        /* أنماط المعرض */
-.gallery-container {
-    width: 100%;
-    max-width: 800px;
-}
-
-.gallery-controls {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-}
-
-.gallery-btn {
-    padding: 10px 20px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.gallery-btn:hover:not(:disabled) {
-    background: #2563eb;
-}
-
-.gallery-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.gallery-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 15px 0;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--border);
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.dot.active {
-    background: var(--accent);
-    transform: scale(1.2);
-}
-
-.image-counter {
-    text-align: center;
-    color: var(--muted);
-    margin: 10px 0;
-}
-
-.image-description {
-    text-align: center;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    margin: 15px 0;
-}
-
-.gallery-img {
-    max-width: 100%;
-    max-height: 400px;
-    border-radius: 8px;
-    display: block;
-    margin: 0 auto;
-    transition: opacity 0.3s;
-}
-
-.gallery-info {
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 15px;
-}
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         /* نافذة Modal للصور */
 .modal {
     display: none;
@@ -195,12 +120,6 @@
 .example-image-container {
     display: none !important;
 }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
         body {
             background: var(--bg);
             color: var(--text);
@@ -208,6 +127,153 @@
             line-height: 1.8;
             scroll-behavior: smooth;
         }
+        .example-btn, .shape-btn {
+    background: linear-gradient(135deg, var(--accent-2), #059669);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.example-btn:hover, .shape-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+}
+
+.shape-btn {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.shape-btn:hover {
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+}
+.example-image-container {
+    max-width: 100%;
+    margin: 15px 0;
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.example-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    display: block;
+}
+
+.image-caption {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 10px;
+    font-style: italic;
+}
+.close-btn {
+    background: var(--error);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    float: left;
+}
+
+.close-btn:hover {
+    background: #dc2626;
+}
+.gallery-container {
+    width: 100%;
+    max-width: 800px;
+}
+
+.gallery-controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.gallery-btn {
+    padding: 10px 20px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.gallery-btn:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+.gallery-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--accent);
+    transform: scale(1.2);
+}
+
+.image-counter {
+    text-align: center;
+    color: var(--muted);
+    margin: 10px 0;
+}
+
+.image-description {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin: 15px 0;
+}
+.gallery-img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+    transition: opacity 0.3s;
+}
+
+.gallery-info {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 15px;
+}
         
         .container {
             max-width: 1200px;
@@ -984,78 +1050,6 @@
                 gap: 15px;
             }
         }
-        /* أضف هذه الأنماط في نهاية قسم الـ style */
-
-.example-btn, .shape-btn {
-    background: linear-gradient(135deg, var(--accent-2), #059669);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin: 10px 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.example-btn:hover, .shape-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
-}
-
-.shape-btn {
-    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-}
-
-.shape-btn:hover {
-    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
-}
-
-.example-image-container {
-    max-width: 100%;
-    margin: 15px 0;
-    display: none;
-    animation: fadeIn 0.5s ease;
-}
-
-.example-image {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 10px;
-    border: 2px solid var(--border);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    margin: 0 auto;
-    display: block;
-}
-
-.image-caption {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-top: 10px;
-    font-style: italic;
-}
-
-.close-btn {
-    background: var(--error);
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    margin-top: 10px;
-    float: left;
-}
-
-.close-btn:hover {
-    background: #dc2626;
-}
     </style>
 </head>
 <body>
@@ -1187,7 +1181,7 @@
                     <span class="step-number">5</span>
                     توقف عندما لا يتم أي تبديل في التمريرة
                 </div>
-              <button class="example-btn" onclick="showExampleImage('bubble')">📷 عرض المثال</button>
+                <button class="example-btn" onclick="showExampleImage('bubble')">📷 عرض المثال</button>
                 <h3>مثال: [20, 13, 15, 24, 17, 10]</h3>
                 
                 <div class="controls">
@@ -1310,7 +1304,7 @@
                     <span class="step-number">5</span>
                     كرر حتى ترتيب جميع العناصر
                 </div>
-       <button class="example-btn" onclick="showExampleImage('selection')">📷 عرض المثال</button>
+                <button class="example-btn" onclick="showExampleImage('selection')">📷 عرض المثال</button>
                 <h3>مثال: [30, 40, 10, 20, 15, 12]</h3>
                 
                 <div class="controls">
@@ -1411,7 +1405,7 @@
                     <span class="step-number">5</span>
                     كرر لجميع العناصر
                 </div>
-<button class="example-btn" onclick="showExampleImage('insertion')">📷 عرض المثال</button>
+                <button class="example-btn" onclick="showExampleImage('insertion')">📷 عرض المثال</button>
                 <h3>مثال: [45, 17, 16, 20, 18, 23]</h3>
                 
                 <div class="controls">
@@ -1657,7 +1651,7 @@
                     <span class="step-number">4</span>
                     كرر العملية بشكل تعاودي على القسمين
                 </div>
-<button class="example-btn" onclick="showExampleImage('quick')">📷 عرض المثال</button>
+                <button class="example-btn" onclick="showExampleImage('quick')">📷 عرض المثال</button>
                 <h3>مثال: [20, 15, 30, 17, 60, 18]</h3>
                 
                 <div class="controls">
@@ -1775,7 +1769,7 @@
                     <span class="step-number">5</span>
                     إذا وصلت لنهاية المصفوفة، العنصر غير موجود
                 </div>
-       <button class="example-btn" onclick="showExampleImage('linear')">📷 عرض المثال</button>
+                <button class="example-btn" onclick="showExampleImage('linear')">📷 عرض المثال</button>
                 <h3>مثال: البحث عن 10 في [6, 12, 10, 9, 15, 20]</h3>
                 
                 <div class="controls">
@@ -1868,7 +1862,7 @@
                     <span class="step-number">6</span>
                     كرر حتى تجد العنصر أو تثبت عدم وجوده
                 </div>
-<button class="example-btn" onclick="showExampleImage('binary')">📷 عرض المثال</button>
+                <button class="example-btn" onclick="showExampleImage('binary')">📷 عرض المثال</button>
                 <h3>مثال: البحث عن 12 في [6, 9, 10, 12, 15, 20]</h3>
                 
                 <div class="controls">
@@ -1973,7 +1967,7 @@
                         <div>استدعاء الدالة لنفسها</div>
                     </div>
                 </div>
-               <button class="example-btn" onclick="showExampleImage('fibonacci')">📷 عرض المثال</button>
+                <button class="example-btn" onclick="showExampleImage('fibonacci')">📷 عرض المثال</button>
                 <h3>مثال: متتالية فيبوناتشي</h3>
                 <p>كل عنصر هو مجموع العنصرين السابقين: 0, 1, 1, 2, 3, 5, 8, 13, ...</p>
                 
@@ -2116,14 +2110,15 @@
                 <p>هي بنى معطيات خطية تتكون من سلسلة من العناصر المترابطة ببعضها بواسطة المؤشرات.</p>
                 
                 <h3>بنية العقدة (Node):</h3>
-              <button class="shape-btn" onclick="showShapeImage('node-structure')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('node-structure')">📐 عرض الشكل</button>
                 <h3>اللائحة المترابطة الأحادية:</h3>
-              <button class="shape-btn" onclick="showShapeImage('singly-linked')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('singly-linked')">📐 عرض الشكل</button>
                 <h3>اللائحة المترابطة المضاعفة:</h3>
-              <button class="shape-btn" onclick="showShapeImage('doubly-linked')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('doubly-linked')">📐 عرض الشكل</button>
                 <h3>اللائحة المترابطة الدائرية:</h3>
-              <button class="shape-btn" onclick="showShapeImage('circular-linked')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('circular-linked')">📐 عرض الشكل</button>
             </div>
+
             <div class="section">
                 <h2>🔧 العمليات على اللوائح المترابطة</h2>
                 
@@ -2150,8 +2145,8 @@
                     </div>
                 </div>
                 
-                <h3>1. إضافة عقدة إلى بداية اللائحة</h3>
-            <button class="shape-btn" onclick="showShapeImage('add-first')">📐 عرض الشكل</button>
+<h3>1. إضافة عقدة إلى بداية اللائحة</h3>
+<button class="shape-btn" onclick="showShapeImage('add-first')">📐 عرض الشكل</button>
                 <div class="code-block">
                     <div class="code-line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">AddFirst</span>(<span class="keyword">int</span> data)</div>
                     <div class="code-line">{</div>
@@ -2174,7 +2169,7 @@
                     <div class="code-line">}</div>
                 </div>
                 <h3>2. إضافة عقدة إلى منتصف اللائحة</h3>
-         <button class="shape-btn" onclick="showShapeImage('add-middle')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('add-middle')">📐 عرض الشكل</button>
                 <div class="code-block">
                     <div class="code-line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">append</span>(<span class="keyword">int</span> data)</div>
                     <div class="code-line">{</div>
@@ -2226,7 +2221,7 @@
                     <div class="code-line">}</div>
                 </div>
                 <h3>3. إضافة عقدة إلى نهاية اللائحة</h3>
-            <button class="shape-btn" onclick="showShapeImage('add-end')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('add-last')">📐 عرض الشكل</button>
                 <div class="code-block">
                     <div class="code-line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">AddLast</span>(<span class="keyword">int</span> data)</div>
                     <div class="code-line">{</div>
@@ -2250,7 +2245,7 @@
                     <div class="code-line">}</div>
                 </div>
                 <h3>4. حذف عقدة من بداية اللائحة</h3>
-             <button class="shape-btn" onclick="showShapeImage('delete-first')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('delete-first')">📐 عرض الشكل</button>
                 <div class="code-block">
                     <div class="code-line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">DeleteFirst</span>()</div>
                     <div class="code-line">{</div>
@@ -2265,7 +2260,7 @@
                     <div class="code-line">}</div>
                 </div>
                 <h3>5. حذف عقدة من نهاية اللائحة</h3>
-             <button class="shape-btn" onclick="showShapeImage('delete-end')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('delete-last')">📐 عرض الشكل</button>
                 <div class="code-block">
                     <div class="code-line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">DeleteLast</span>()</div>
                     <div class="code-line">{</div>
@@ -2284,7 +2279,7 @@
                     <div class="code-line">}</div>
                 </div>
                 <h3>6. حذف عقدة من منتصف اللائحة</h3>
-                   <button class="shape-btn" onclick="showShapeImage('delete-middle')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('delete-middle')">📐 عرض الشكل</button>
                 <div class="code-block">
                     <div class="code-line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="method">deleteElement</span>(<span class="keyword">int</span> target)</div>
                     <div class="code-line">{</div>
@@ -2317,7 +2312,7 @@
                     <div class="code-line">}</div>
                 </div>
                 <h3>7. البحث عن عقدة</h3>
-       <button class="shape-btn" onclick="showShapeImage('search')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('search')">📐 عرض الشكل</button>
                 <div class="code-block">
                     <div class="code-line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="method">Search</span>(<span class="keyword">int</span> target)</div>
                     <div class="code-line">{</div>
@@ -2355,7 +2350,7 @@
                 <p>هيكل بيانات يعمل بمبدأ LIFO (آخر داخل أول خارج) مثل كومة من الأطباق.</p>
                 
                 <h3>الشكل:</h3>
-   <button class="shape-btn" onclick="showShapeImage('stack-shape')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('stack-shape')">📐 عرض الشكل</button>
                 <h3>العمليات على المكدس:</h3>
                 <div class="comparison-table-container">
                     <table class="comparison-table">
@@ -2545,10 +2540,10 @@
 </div>
                 </div>
             </div>
-<button class="example-btn" onclick="showExampleImage('stack-exercises')">📷 عرض المثال</button>
+
             <div class="section">
                 <h2>📝 تمارين على المكدس</h2>
-                
+                <button class="example-btn" onclick="showExampleImage('stack-exercises')">📷 عرض المثال</button>
                 <div class="exercise">
                     <h4>تمرين 1: تحويل التعابير من Infix إلى Postfix</h4>
                     <p>حول التعابير التالية مع توضيح المكدس والخارج في كل خطوة:</p>
@@ -2597,6 +2592,7 @@
                 </div>
             </div>
         </div>
+
         <!-- 7. الأشجار -->
         <div class="tab-content" id="trees">
             <div class="section">
@@ -2606,12 +2602,14 @@
                 <p>هي بنى معطيات غير خطية مؤلفة من مجموعة العناصر المرتبطة ببعضها والنظمة تنظيماً هرمياً.</p>
                 
                 <h3>شجرة معممة:</h3>
-<button class="shape-btn" onclick="showShapeImage('general-tree')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('general-tree')">📐 عرض الشكل</button>
                 <h3>الشجرة الثنائية:</h3>
-     <button class="shape-btn" onclick="showShapeImage('binary-tree')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('binary-tree')">📐 عرض الشكل</button>
+            </div>
+
             <div class="section">
                 <h2>📊 المفاهيم الأساسية في الأشجار الثنائية</h2>
-              <button class="shape-btn" onclick="showShapeImage('tree-concepts')">📐 عرض الشكل</button>
+                <button class="shape-btn" onclick="showShapeImage('tree-concepts')">📐 عرض الشكل</button>
                 <div class="comparison-table-container">
                     <table class="comparison-table">
                         <thead>
@@ -2688,7 +2686,7 @@
                     </div>
                 </div>
             </div>
-
+<button class="example-btn" onclick="showExampleImage('tree-sequence')">📷 عرض المثال</button>
             <div class="section">
                 <h2>🔄 العبور في الأشجار (Traversal)</h2>
                 
@@ -2721,36 +2719,40 @@
                         </tbody>
                     </table>
                 </div>
-<button class="example-btn" onclick="showExampleImage('tree-sequence')">📷 عرض المثال</button>
+                
+                <div class="algorithm-properties">
+                    <div class="property-card">
+                        <div class="property-icon">🔠</div>
+                        <div class="property-title">Preorder</div>
+                        <div>A, B, D, E, C</div>
+                    </div>
+                    <div class="property-card">
+                        <div class="property-icon">🔡</div>
+                        <div class="property-title">Inorder</div>
+                        <div>D, B, E, A, C</div>
+                    </div>
+                    <div class="property-card">
+                        <div class="property-icon">🔣</div>
+                        <div class="property-title">Postorder</div>
+                        <div>D, E, B, C, A</div>
+                    </div>
+                </div>
             </div>
+
             <div class="section">
                 <h2>🎯 شجرة البحث الثنائي (BST)</h2>
                 
                 <h3>شرح مبسط:</h3>
                 <p>شجرة ثنائية مرتبة حيث تكون جميع العناصر في الشجرة الفرعية اليسرى أصغر من الجذر، وجميع العناصر في الشجرة الفرعية اليمنى أكبر من الجذر.</p>
-      <button class="example-btn" onclick="showExampleImage('bst-numbers')">📷 عرض المثال</button>
+                <button class="example-btn" onclick="showExampleImage('bst-numbers')">📷 عرض المثال</button>
             </div>
-    </div>
-    <footer>
+        </div>
+
+        <footer>
             <p>📚 مقرر الخوارزميات | Fidaa Muhimed</p>
         </footer>
-<!-- نافذة عرض الصور -->
-<div id="image-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; justify-content: center; align-items: center;">
-    <div style="background: var(--card); padding: 20px; border-radius: 10px; max-width: 90%; max-height: 90%; overflow: auto; position: relative;">
-        <button onclick="closeImage()" style="position: absolute; top: 10px; left: 10px; background: var(--error); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: bold;">✕</button>
-        <img id="modal-image" src="" alt="صورة المثال" style="max-width: 100%; max-height: 80vh; border-radius: 5px;">
-        <div id="modal-caption" style="text-align: center; color: var(--text); margin-top: 10px; padding: 10px;"></div>
     </div>
-</div>
- <!-- نافذة Modal للصور -->
-<div id="image-modal" class="modal">
-    <div class="modal-content">
-        <button class="modal-close" onclick="closeModal()">×</button>
-        <h3 class="modal-title" id="modal-title"></h3>
-        <img id="modal-image" class="modal-image" alt="صورة المثال">
-        <div class="modal-caption" id="modal-caption"></div>
-    </div>
-</div>
+
     <script>
         // متغيرات عامة
         let currentTab = 'basics';
@@ -4740,677 +4742,369 @@ function startInfixConversion() {
     startInfixConversionWithSpeed(speed);
 }
 // ============================================
-// وظائف عرض وإغلاق الصور
+// نظام عرض الصور (Modal)
 // ============================================
 
-function showExampleImage(type) {
-    console.log('محاولة فتح معرض:', type);
+// مصفوفات الصور
+const exampleImages = {
+    // الفرز الفقاعي
+    'bubble': [
+        { url: 'bubble1.jpg', caption: 'Example'},
+        { url: 'bubble2.jpg', caption: 'Example' }
+    ],
     
-    if (!imageGallery[type]) {
-        console.error('لا توجد صور لهذا النوع:', type);
-        alert('لا توجد صور متاحة لهذا النوع');
-        return;
-    }
+    // الفرز بالاختيار
+    'selection': [
+        { url: 'selection1.png', caption: 'Example' },
+        { url: 'selection2.png', caption: 'Example' }
+    ],
     
-    currentGallery = type;
-    currentIndex = 0;
+    // الفرز بالإقحام
+    'insertion': [
+        { url: 'insertion1.png', caption: 'Example' },
+        { url: 'insertion2.png', caption: 'Example' }
+    ],
     
-    const gallery = imageGallery[type];
+    // الفرز بالدمج
+    'merge': [
+        { url: 'merg1.png' , caption: 'Example'},
+        { url: 'merg2.png', caption: 'Example' },
+        { url: 'merg3.png', caption: 'Example' },
+        { url: 'merg4.png', caption: 'Example' },
+        { url: 'merg5.png', caption: 'Example' }
+    ],
     
-    // إنشاء محتوى HTML مباشرة
-    const modalContent = `
-        <div class="gallery-container">
-            <h3 style="text-align: center; color: var(--accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent);">
-                ${gallery.title}
-            </h3>
-            
-            <div class="image-viewer">
-                <div id="current-image-container" style="text-align: center; margin: 20px 0;">
-                    <img id="current-image" 
-                         src="${gallery.images[0].src}" 
-                         alt="${gallery.images[0].caption}"
-                         style="max-width: 100%; max-height: 400px; border-radius: 8px; cursor: pointer;"
-                         onclick="toggleZoom(this)">
-                </div>
-                
-                <div class="image-description" style="text-align: center; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; margin: 15px 0;">
-                    ${gallery.images[0].caption}
-                </div>
-                
-                <div class="image-counter" style="text-align: center; color: var(--muted); margin: 10px 0;">
-                    <span id="current-number">1</span> / ${gallery.images.length}
-                </div>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-                <button onclick="prevImage()" class="gallery-btn" id="prev-btn">
-                    ← السابق
-                </button>
-                
-                <button onclick="closeModal()" class="gallery-btn" style="background: var(--error);">
-                    إغلاق
-                </button>
-                
-                <button onclick="nextImage()" class="gallery-btn" id="next-btn">
-                    التالي →
-                </button>
-            </div>
-            
-            <div class="gallery-dots" style="display: flex; justify-content: center; gap: 10px; margin: 15px 0;">
-                ${gallery.images.map((_, index) => `
-                    <span class="dot" style="width: 12px; height: 12px; border-radius: 50%; background: ${index === 0 ? 'var(--accent)' : 'var(--border)'}; cursor: pointer;" 
-                          onclick="jumpToImage(${index})"></span>
-                `).join('')}
-            </div>
-        </div>
-    `;
+    // الفرز السريع
+    'quick': [
+        { url: 'quick1.png' , caption: 'Example'},
+        { url: 'quick2.png', caption: 'Example' }
+    ],
     
-    // تعيين المحتوى وعرض النافذة
-    document.getElementById('modal-title').textContent = gallery.title;
-    document.getElementById('modal-caption').innerHTML = modalContent;
-    document.getElementById('image-modal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-}
-
-function hideExample(type) {
-    const exampleId = type + '-example';
-    const container = document.getElementById(exampleId);
+    // البحث التسلسلي
+    'linear': [
+        { url: 'Linear1.png', caption: 'Example'}
+    ],
     
-    if (container) {
-        container.style.display = 'none';
-    }
-}
-
-function showShapeImage(type) {
-    const shapeId = type + '-shape';
-    const container = document.getElementById(shapeId);
+    // البحث الثنائي
+    'binary': [
+        { url: 'Binary1.png' , caption: 'Example'}
+    ],
     
-    if (container) {
-        // إخفاء جميع الحاويات أولاً
-        document.querySelectorAll('.example-image-container').forEach(el => {
-            el.style.display = 'none';
-        });
-        
-        // عرض الحاوية المطلوبة
-        container.style.display = 'block';
-        
-        // التمرير إلى الصورة
-        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-}
-
-function hideShape(type) {
-    const shapeId = type + '-shape';
-    const container = document.getElementById(shapeId);
+    // التعاودية
+    'fibonacci': [
+        { url: 'Recursive.png', caption: 'Example'}
+    ],
     
-    if (container) {
-        container.style.display = 'none';
-    }
-}
-
-// إضافة وظيفة لإغلاق جميع الصور عند التبديل بين التبويبات
-function closeAllImages() {
-    document.querySelectorAll('.example-image-container').forEach(el => {
-        el.style.display = 'none';
-    });
-}
-
-// تعديل دالة switchTab لإغلاق الصور عند التبديل
-const originalSwitchTab = switchTab;
-switchTab = function(tabId) {
-    closeAllImages();
-    originalSwitchTab(tabId);
+    // تمارين المكدس
+    'stack-exercises': [
+        { url: 'm2.png', caption: 'Example' },
+        { url: 'm3.png', caption: 'Example' }
+    ],
+      // تسلسل الشجرة
+    'tree-sequence': [
+        { url: 't4.png' , caption: 'Example'}
+    ],
+    // شجرة البحث الثنائية
+    'bst-numbers': [
+        { url: 't5.png', caption: 'Example' }
+    ]
 };
-// دالة التكبير البسيطة
-function toggleZoom(img) {
-    if (img.style.transform === 'scale(1.5)') {
-        img.style.transform = 'scale(1)';
-        img.style.cursor = 'zoom-in';
+
+const shapeImages = {
+    // بنية العقدة
+    'node-structure': [
+        { url: '1.png', caption: 'Shape' }
+    ],
+    
+    // اللائحة المترابطة الأحادية
+    'singly-linked': [
+        { url: '2.png', caption: 'Shape' }
+    ],
+    
+    // اللائحة المترابطة المضاعفة
+    'doubly-linked': [
+        { url: '3.png', caption: 'Shape'}
+    ],
+    
+    // اللائحة المترابطة الدائرية
+    'circular-linked': [
+        { url: '4.png' , caption: 'Shape'}
+    ],
+    
+    // إضافة عقدة بداية اللائحة
+    'add-first': [
+        { url: '5.png', caption: 'Shape' }
+    ],
+    
+    // إضافة عقدة إلى منتصف اللائحة
+    'add-middle': [
+        { url: '6.png', caption: 'Shape' }
+    ],
+    
+    // إضافة عقدة إلى نهاية اللائحة
+    'add-last': [
+        { url: '7.png' , caption: 'Shape'}
+    ],
+    
+    // حذف عقدة من بداية اللائحة
+    'delete-first': [
+        { url: '8.png' , caption: 'Shape'}
+    ],
+    
+    // حذف عقدة من نهاية اللائحة
+    'delete-last': [
+        { url: '9.png', caption: 'Shape' }
+    ],
+    
+    // حذف عقدة من منتصف اللائحة
+    'delete-middle': [
+        { url: '10.png', caption: 'Shape' }
+    ],
+    
+    // البحث عن عقدة
+    'search': [
+        { url: '11.png', caption: 'Shape' }
+    ],
+    
+    // شكل المكدس
+    'stack-shape': [
+        { url: 'm1.png', caption: 'Shape' }
+    ],
+    
+    // شجرة معممة
+    'general-tree': [
+        { url: 't1.png', caption: 'Shape' }
+    ],
+    
+    // شجرة ثنائية
+    'binary-tree': [
+        { url: 't2.png', caption: 'Shape' }
+    ],
+    
+    // المفاهيم الأساسية
+    'tree-concepts': [
+        { url: 't3.png', caption: 'Shape'}
+    ]
+};
+
+// متغيرات للتحكم في معرض الصور
+let currentGallery = {
+    type: '', // 'example' أو 'shape'
+    name: '',
+    images: [],
+    currentIndex: 0
+};
+
+// دالة لعرض صورة مثال
+function showExampleImage(imageName) {
+    if (exampleImages[imageName]) {
+        currentGallery.type = 'example';
+        currentGallery.name = imageName;
+        currentGallery.images = exampleImages[imageName];
+        currentGallery.currentIndex = 0;
+        
+        openModal();
+        updateModalContent();
+    }
+}
+
+// دالة لعرض شكل
+function showShapeImage(imageName) {
+    if (shapeImages[imageName]) {
+        currentGallery.type = 'shape';
+        currentGallery.name = imageName;
+        currentGallery.images = shapeImages[imageName];
+        currentGallery.currentIndex = 0;
+        
+        openModal();
+        updateModalContent();
+    }
+}
+
+// دالة لفتح نافذة Modal
+function openModal() {
+    const modal = document.getElementById('image-modal');
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+}
+
+// دالة لإغلاق نافذة Modal
+function closeModal() {
+    const modal = document.getElementById('image-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // إعادة تفعيل التمرير
+}
+
+// دالة لتحديث محتوى Modal
+function updateModalContent() {
+    if (currentGallery.images.length === 0) return;
+    
+    const currentImage = currentGallery.images[currentGallery.currentIndex];
+    const modal = document.getElementById('image-modal');
+    
+    // تحديث العنوان
+    const title = document.getElementById('modal-title');
+    if (currentGallery.type === 'example') {
+        title.textContent = '📷 مثال توضيحي';
     } else {
-        img.style.transform = 'scale(1.5)';
-        img.style.cursor = 'zoom-out';
-    }
-}
-
-// دالة مبسطة للتنقل بين الصور
-function nextImage() {
-    if (!currentGallery || currentIndex >= imageGallery[currentGallery].images.length - 1) return;
-    currentIndex++;
-    updateSimpleGallery();
-}
-
-function prevImage() {
-    if (!currentGallery || currentIndex <= 0) return;
-    currentIndex--;
-    updateSimpleGallery();
-}
-
-function updateSimpleGallery() {
-    const gallery = imageGallery[currentGallery];
-    const imageElement = document.getElementById('current-image');
-    const descriptionElement = document.querySelector('.image-description');
-    const currentNumberElement = document.getElementById('current-number');
-    const dots = document.querySelectorAll('.gallery-dots .dot');
-    
-    if (imageElement && gallery.images[currentIndex]) {
-        imageElement.src = gallery.images[currentIndex].src;
-        imageElement.alt = gallery.images[currentIndex].caption;
-        
-        if (descriptionElement) {
-            descriptionElement.textContent = gallery.images[currentIndex].caption;
-        }
-        
-        if (currentNumberElement) {
-            currentNumberElement.textContent = currentIndex + 1;
-        }
-        
-        if (dots && dots.length > 0) {
-            dots.forEach((dot, index) => {
-                if (dot) {
-                    dot.style.background = index === currentIndex ? 'var(--accent)' : 'var(--border)';
-                }
-            });
-        }
-        
-        // تحديث حالة الأزرار
-        document.getElementById('prev-btn').disabled = currentIndex === 0;
-        document.getElementById('next-btn').disabled = currentIndex === gallery.images.length - 1;
-    }
-}
-
-function jumpToImage(index) {
-    if (!currentGallery || index === currentIndex) return;
-    
-    const gallery = imageGallery[currentGallery];
-    if (index >= 0 && index < gallery.images.length) {
-        currentIndex = index;
-        updateSimpleGallery();
-    }
-}
-
-// معرض الصور الكامل
-const imageGallery = {
-    // خوارزميات الترتيب
-    'bubble': {
-        title: '🎯 خوارزمية الفرز الفقاعي',
-        images: [
-            {src: 'bubble1.png', caption: 'الشكل 1: شرح خطوات الفرز الفقاعي'},
-            {src: 'bubble2.png', caption: 'الشكل 2: مثال عملي على الفرز الفقاعي'}
-        ]
-    },
-    'selection': {
-        title: '🎯 خوارزمية الفرز بالاختيار',
-        images: [
-            {src: 'selection1.png', caption: 'الشكل 1: شرح خطوات الفرز بالاختيار'},
-            {src: 'selection2.png', caption: 'الشكل 2: مثال عملي على الفرز بالاختيار'}
-        ]
-    },
-    'insertion': {
-        title: '🎯 خوارزمية الفرز بالإقحام',
-        images: [
-            {src: 'insertion1.png', caption: 'الشكل 1: شرح خطوات الفرز بالإقحام'},
-            {src: 'insertion2.png', caption: 'الشكل 2: مثال عملي على الفرز بالإقحام'}
-        ]
-    },
-    'merge': {
-        title: '🎯 خوارزمية الفرز بالدمج',
-        images: [
-            {src: 'merg1.png', caption: 'الشكل 1: خطوة التقسيم في الدمج'},
-            {src: 'merg2.png', caption: 'الشكل 2: خطوة الدمج الأول'},
-            {src: 'merg3.png', caption: 'الشكل 3: الدمج المستمر'},
-            {src: 'merg4.png', caption: 'الشكل 4: قبل المرحلة النهائية'},
-            {src: 'merg5.png', caption: 'الشكل 5: النتيجة النهائية'}
-        ]
-    },
-    'quick': {
-        title: '🎯 خوارزمية الفرز السريع',
-        images: [
-            {src: 'quick1.png', caption: 'الشكل 1: اختيار المحور والتقسيم'},
-            {src: 'quick2.png', caption: 'الشكل 2: نتيجة الفرز السريع'}
-        ]
-    },
-    
-    // خوارزميات البحث
-    'linear': {
-        title: '🔍 البحث التسلسلي',
-        images: [
-            {src: 'Linear1.png', caption: 'شكل البحث التسلسلي في المصفوفة'}
-        ]
-    },
-    'binary': {
-        title: '🔍 البحث الثنائي',
-        images: [
-            {src: 'Binary1.png', caption: 'شكل البحث الثنائي في مصفوفة مرتبة'}
-        ]
-    },
-    
-    // الخوارزميات التعاودية
-    'fibonacci': {
-        title: '🔄 الخوارزميات التعاودية',
-        images: [
-            {src: 'Recursive.png', caption: 'مثال متتالية فيبوناتشي التعاودية'}
-        ]
-    },
-    
-    // اللوائح المترابطة
-    'node-structure': {
-        title: '🔗 بنية العقدة',
-        images: [
-            {src: '1.png', caption: 'هيكل العقدة في اللائحة المترابطة'}
-        ]
-    },
-    'singly-linked': {
-        title: '🔗 اللائحة المترابطة الأحادية',
-        images: [
-            {src: '2.png', caption: 'شكل اللائحة المترابطة الأحادية'}
-        ]
-    },
-    'doubly-linked': {
-        title: '🔗 اللائحة المترابطة المضاعفة',
-        images: [
-            {src: '3.png', caption: 'شكل اللائحة المترابطة المضاعفة'}
-        ]
-    },
-    'circular-linked': {
-        title: '🔄 اللائحة المترابطة الدائرية',
-        images: [
-            {src: '4.png', caption: 'شكل اللائحة المترابطة الدائرية'}
-        ]
-    },
-    'add-first': {
-        title: '➕ إضافة عقدة إلى البداية',
-        images: [
-            {src: '5.png', caption: 'عملية إضافة عقدة جديدة إلى بداية اللائحة'}
-        ]
-    },
-    'add-middle': {
-        title: '➕ إضافة عقدة إلى منتصف اللائحة',
-        images: [
-            {src: '6.png', caption: 'عملية إضافة عقدة جديدة إلى منتصف اللائحة'}
-        ]
-    },
-    'add-end': {
-        title: '➕ إضافة عقدة إلى نهاية اللائحة',
-        images: [
-            {src: '7.png', caption: 'عملية إضافة عقدة جديدة إلى نهاية اللائحة'}
-        ]
-    },
-    'delete-first': {
-        title: '➖ حذف عقدة من البداية',
-        images: [
-            {src: '8.png', caption: 'عملية حذف عقدة من بداية اللائحة'}
-        ]
-    },
-    'delete-end': {
-        title: '➖ حذف عقدة من النهاية',
-        images: [
-            {src: '9.png', caption: 'عملية حذف عقدة من نهاية اللائحة'}
-        ]
-    },
-    'delete-middle': {
-        title: '➖ حذف عقدة من منتصف اللائحة',
-        images: [
-            {src: '10.png', caption: 'عملية حذف عقدة من منتصف اللائحة'}
-        ]
-    },
-    'search': {
-        title: '🔍 البحث عن عقدة',
-        images: [
-            {src: '11.png', caption: 'عملية البحث عن عقدة في اللائحة'}
-        ]
-    },
-    
-    // المكدس
-    'stack-shape': {
-        title: '📚 شكل المكدس',
-        images: [
-            {src: 'm1.png', caption: 'شكل المكدس ومبدأ LIFO'}
-        ]
-    },
-    'stack-exercises': {
-        title: '📝 مثال بالمكدس',
-        images: [
-            {src: 'm2.png', caption: 'مثال عملي على استخدام المكدس'}
-        ]
-    },
-    
-    // الأشجار
-    'general-tree': {
-        title: '🌳 الشجرة المعممة',
-        images: [
-            {src: 't1.png', caption: 'شكل الشجرة المعممة'}
-        ]
-    },
-    'binary-tree': {
-        title: '🌲 الشجرة الثنائية',
-        images: [
-            {src: 't2.png', caption: 'شكل الشجرة الثنائية'}
-        ]
-    },
-    'tree-concepts': {
-        title: '🌳 المفاهيم الأساسية في الأشجار',
-        images: [
-            {src: 't3.png', caption: 'المفاهيم الأساسية في الأشجار الثنائية'}
-        ]
-    },
-    'tree-sequence': {
-        title: '🔤 تمرين السلسة A,B,C,D,E',
-        images: [
-            {src: 't4.png', caption: 'تمرين عبور شجرة للسلسة A,B,C,D,E'}
-        ]
-    },
-    'bst-numbers': {
-        title: '🎯 تمرين البحث الثنائي BST',
-        images: [
-            {src: 't5.png', caption: 'تمرين بناء شجرة بحث ثنائية'}
-        ]
-    }
-};
-
-// متغيرات التحكم
-let currentGallery = null;
-let currentIndex = 0;
-
-// دالة عرض معرض الصور
-function showGallery(type) {
-    if (!imageGallery[type]) {
-        console.error('المعرض غير موجود:', type);
-        return;
+        title.textContent = '📐 شكل توضيحي';
     }
     
-    currentGallery = type;
-    currentIndex = 0;
+    // تحديث الصورة
+    const img = document.getElementById('modal-image');
+    img.src = currentImage.url;
+    img.alt = currentImage.caption;
     
-    openGalleryModal();
-}
-
-// دالة فتح نافذة المعرض
-function openGalleryModal() {
-    const gallery = imageGallery[currentGallery];
-    
-    // إخفاء الصورة العادية
-    document.getElementById('modal-image').style.display = 'none';
-    
-    // إنشاء محتوى المعرض
-    const modalContent = `
-        <div class="gallery-container">
-            <!-- عنوان المعرض -->
-            <h3 style="text-align: center; color: var(--accent); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent);">
-                ${gallery.title}
-            </h3>
-            
-            <!-- حاوية الصورة -->
-            <div class="image-viewer">
-                <div id="current-image-container" class="image-container">
-                    <img id="current-image" 
-                         src="${gallery.images[currentIndex].src}" 
-                         alt="${gallery.images[currentIndex].caption}"
-                         class="gallery-img"
-                         onerror="this.src='https://via.placeholder.com/600x400/1e293b/e2e8f0?text=Image+Not+Found'">
-                </div>
-                
-                <!-- شرح الصورة -->
-                <div id="image-description" class="image-description">
-                    ${gallery.images[currentIndex].caption}
-                </div>
-                
-                <!-- عداد الصور -->
-                <div class="image-counter">
-                    <span id="current-number">${currentIndex + 1}</span> / ${gallery.images.length}
-                </div>
-            </div>
-            
-            <!-- أزرار التنقل -->
-            <div class="gallery-controls">
-                <button onclick="prevImage()" class="gallery-btn prev-btn" ${currentIndex === 0 ? 'disabled' : ''}>
-                    <span>← السابق</span>
-                </button>
-                
-                <button onclick="closeGallery()" class="gallery-btn close-btn">
-                    <span>إغلاق</span>
-                </button>
-                
-                <button onclick="nextImage()" class="gallery-btn next-btn" ${currentIndex === gallery.images.length - 1 ? 'disabled' : ''}>
-                    <span>التالي →</span>
-                </button>
-            </div>
-            
-            <!-- النقاط التنقل السريع -->
-            <div class="gallery-dots">
-                ${gallery.images.map((_, index) => `
-                    <span class="dot ${index === currentIndex ? 'active' : ''}" 
-                          onclick="jumpToImage(${index})"
-                          title="الصورة ${index + 1}"></span>
-                `).join('')}
-            </div>
-            
-            <!-- معلومات إضافية -->
-            <div class="gallery-info">
-                <small>استخدم مفاتيح الأسهم ← → للتنقل بين الصور</small>
-            </div>
-        </div>
+    // تحديث التسمية التوضيحية
+    const caption = document.getElementById('modal-caption');
+    caption.innerHTML = `
+        ${currentImage.caption}<br>
+        <span style="color: var(--muted); font-size: 0.9rem;">
+            الصورة ${currentGallery.currentIndex + 1} من ${currentGallery.images.length}
+        </span>
     `;
     
-    // إضافة المحتوى إلى النافذة
-    document.getElementById('modal-title').textContent = gallery.title;
-    document.getElementById('modal-caption').innerHTML = modalContent;
-    
-    // إظهار النافذة
-    document.getElementById('image-modal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-    
-    // إضافة مستمعات للأزرار
-    setupKeyboardNavigation();
-}
-// دالة تحديث عرض المعرض
-function updateGalleryDisplay() {
-    if (!currentGallery) return;
-    
-    const gallery = imageGallery[currentGallery];
-    const imageElement = document.getElementById('current-image');
-    const descriptionElement = document.getElementById('image-description');
-    const currentNumberElement = document.getElementById('current-number');
-    const dots = document.querySelectorAll('.gallery-dots .dot');
-    const prevBtn = document.querySelector('.gallery-btn.prev-btn');
-    const nextBtn = document.querySelector('.gallery-btn.next-btn');
-    
-    if (imageElement && gallery.images[currentIndex]) {
-        // تحديث الصورة
-        imageElement.src = gallery.images[currentIndex].src;
-        imageElement.alt = gallery.images[currentIndex].caption;
-        
-        // تحديث الشرح
-        if (descriptionElement) {
-            descriptionElement.textContent = gallery.images[currentIndex].caption;
-        }
-        
-        // تحديث العداد
-        if (currentNumberElement) {
-            currentNumberElement.textContent = currentIndex + 1;
-        }
-        
-        // تحديث النقاط النشطة
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-        
-        // تحديث حالة الأزرار
-        if (prevBtn) {
-            prevBtn.disabled = currentIndex === 0;
-        }
-        if (nextBtn) {
-            nextBtn.disabled = currentIndex === gallery.images.length - 1;
-        }
-        
-        // إضافة تأثير التلاشي
-        imageElement.style.opacity = '0.7';
-        setTimeout(() => {
-            imageElement.style.opacity = '1';
-        }, 50);
-    }
-}
-// دالة الصورة التالية
-function nextImage() {
-    if (!currentGallery) return;
-    
-    const gallery = imageGallery[currentGallery];
-    if (currentIndex < gallery.images.length - 1) {
-        currentIndex++;
-        updateGalleryDisplay();
-    }
-}
-// دالة الانتقال إلى صورة محددة
-function jumpToImage(index) {
-    if (!currentGallery || index === currentIndex) return;
-    
-    const gallery = imageGallery[currentGallery];
-    if (index >= 0 && index < gallery.images.length) {
-        currentIndex = index;
-        updateGalleryDisplay();
-    }
-}
-// دالة الصورة السابقة
-function prevImage() {
-    if (!currentGallery) return;
-    
-    if (currentIndex > 0) {
-        currentIndex--;
-        updateGalleryDisplay();
+    // إضافة عناصر التحكم إذا كان هناك أكثر من صورة
+    if (currentGallery.images.length > 1) {
+        addGalleryControls();
+    } else {
+        removeGalleryControls();
     }
 }
 
-// دالة إغلاق المعرض
-function closeGallery() {
-    document.getElementById('image-modal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-    currentGallery = null;
-    currentIndex = 0;
-}
-
-// دالة التنقل بلوحة المفاتيح
-function setupKeyboardNavigation() {
-    const keyHandler = function(e) {
-        if (!currentGallery) return;
+// دالة لإضافة عناصر التحكم في معرض الصور
+function addGalleryControls() {
+    let controls = document.getElementById('gallery-controls');
+    
+    // إذا لم تكن موجودة، أنشئها
+    if (!controls) {
+        controls = document.createElement('div');
+        controls.id = 'gallery-controls';
+        controls.className = 'gallery-controls';
         
-        switch(e.key) {
-            case 'ArrowLeft':
-                prevImage();
-                break;
-            case 'ArrowRight':
-                nextImage();
-                break;
-            case 'Escape':
-                closeGallery();
-                break;
-        }
-    };
+        // زر السابق
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'gallery-btn';
+        prevBtn.innerHTML = '← السابق';
+        prevBtn.onclick = showPrevImage;
+        
+        // زر التالي
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'gallery-btn';
+        nextBtn.innerHTML = 'التالي →';
+        nextBtn.onclick = showNextImage;
+        
+        // النقاط المؤشرة
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'gallery-dots';
+        dotsContainer.id = 'gallery-dots';
+        
+        controls.appendChild(prevBtn);
+        controls.appendChild(dotsContainer);
+        controls.appendChild(nextBtn);
+        
+        // إضافة عناصر التحكم إلى Modal
+        const modalContent = document.querySelector('.modal-content');
+        const caption = document.getElementById('modal-caption');
+        modalContent.insertBefore(controls, caption.nextSibling);
+    }
     
-    // إزالة المستمع القديم أولاً
-    document.removeEventListener('keydown', window.galleryKeyHandler);
-    
-    // إضافة المستمع الجديد
-    window.galleryKeyHandler = keyHandler;
-    document.addEventListener('keydown', keyHandler);
+    // تحديث النقاط المؤشرة
+    updateDots();
+    updateButtons();
 }
 
-// إغلاق النافذة عند النقر خارجها
-document.getElementById('image-modal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeGallery();
+// دالة لإزالة عناصر التحكم
+function removeGalleryControls() {
+    const controls = document.getElementById('gallery-controls');
+    if (controls) {
+        controls.remove();
+    }
+}
+
+// دالة لعرض الصورة التالية
+function showNextImage() {
+    if (currentGallery.currentIndex < currentGallery.images.length - 1) {
+        currentGallery.currentIndex++;
+        updateModalContent();
+    }
+}
+
+// دالة لعرض الصورة السابقة
+function showPrevImage() {
+    if (currentGallery.currentIndex > 0) {
+        currentGallery.currentIndex--;
+        updateModalContent();
+    }
+}
+
+// دالة لتحديث النقاط المؤشرة
+function updateDots() {
+    const dotsContainer = document.getElementById('gallery-dots');
+    if (!dotsContainer) return;
+    
+    dotsContainer.innerHTML = '';
+    
+    for (let i = 0; i < currentGallery.images.length; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        if (i === currentGallery.currentIndex) {
+            dot.classList.add('active');
+        }
+        dot.onclick = () => {
+            currentGallery.currentIndex = i;
+            updateModalContent();
+        };
+        dotsContainer.appendChild(dot);
+    }
+}
+
+// دالة لتحديث حالة الأزرار
+function updateButtons() {
+    const controls = document.getElementById('gallery-controls');
+    if (!controls) return;
+    
+    const buttons = controls.querySelectorAll('.gallery-btn');
+    if (buttons.length >= 2) {
+        // زر السابق
+        buttons[0].disabled = currentGallery.currentIndex === 0;
+        
+        // زر التالي
+        buttons[2].disabled = currentGallery.currentIndex === currentGallery.images.length - 1;
+    }
+}
+
+// إغلاق Modal عند الضغط على زر Escape
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+    
+    // التنقل بين الصور باستخدام مفاتيح الأسهم
+    if (document.getElementById('image-modal').style.display === 'flex') {
+        if (event.key === 'ArrowRight') {
+            showNextImage();
+        } else if (event.key === 'ArrowLeft') {
+            showPrevImage();
+        }
     }
 });
-function closeModal() {
-    document.getElementById('image-modal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
 
-// تعديل دوال عرض الصور لاستخدام المعرض
-function showExampleImage(type) {
-    if (imageGallery[type]) {
-        showGallery(type);
-    } else {
-        console.error('لا توجد صور لهذا النوع:', type);
+// إغلاق Modal عند النقر خارج المحتوى
+document.getElementById('image-modal').addEventListener('click', function(event) {
+    if (event.target === this) {
+        closeModal();
     }
-}
-
-function showShapeImage(type) {
-    showExampleImage(type); // استخدم نفس الدالة
-}
-// أضف هذه الدالة
-function setupImageZoom() {
-    const image = document.getElementById('current-image');
-    if (!image) return;
-    
-    let isZoomed = false;
-    
-    image.addEventListener('click', function() {
-        if (!isZoomed) {
-            this.style.transform = 'scale(1.5)';
-            this.style.cursor = 'zoom-out';
-            this.style.transition = 'transform 0.3s ease';
-            isZoomed = true;
-        } else {
-            this.style.transform = 'scale(1)';
-            this.style.cursor = 'zoom-in';
-            isZoomed = false;
-        }
-    });
-    
-    image.style.cursor = 'zoom-in';
-}
-
-function updateGalleryDisplay() {
-    if (!currentGallery) return;
-    
-    const gallery = imageGallery[currentGallery];
-    const imageElement = document.getElementById('current-image');
-    const descriptionElement = document.getElementById('image-description');
-    const currentNumberElement = document.getElementById('current-number');
-    const dots = document.querySelectorAll('.gallery-dots .dot');
-    const prevBtn = document.querySelector('.gallery-btn.prev-btn');
-    const nextBtn = document.querySelector('.gallery-btn.next-btn');
-    
-    if (imageElement && gallery.images[currentIndex]) {
-        // تحديث الصورة
-        imageElement.src = gallery.images[currentIndex].src;
-        imageElement.alt = gallery.images[currentIndex].caption;
-        
-        // تحديث الشرح
-        if (descriptionElement) {
-            descriptionElement.textContent = gallery.images[currentIndex].caption;
-        }
-        
-        // تحديث العداد
-        if (currentNumberElement) {
-            currentNumberElement.textContent = currentIndex + 1;
-        }
-        
-        // تحديث النقاط النشطة
-        if (dots && dots.length > 0) {
-            dots.forEach((dot, index) => {
-                if (dot) {
-                    dot.classList.toggle('active', index === currentIndex);
-                }
-            });
-        }
-        
-        // تحديث حالة الأزرار
-        if (prevBtn) {
-            prevBtn.disabled = currentIndex === 0;
-        }
-        if (nextBtn) {
-            nextBtn.disabled = currentIndex === gallery.images.length - 1;
-        }
-        
-        // إضافة تأثير التلاشي
-        if (imageElement) {
-            imageElement.style.opacity = '0.7';
-            setTimeout(() => {
-                imageElement.style.opacity = '1';
-            }, 50);
-        }
-    }
-}
+});
     </script>
+    <!-- نافذة Modal للصور -->
+<div id="image-modal" class="modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <h3 class="modal-title" id="modal-title"></h3>
+        <img id="modal-image" class="modal-image" alt="صورة المثال">
+        <div class="modal-caption" id="modal-caption"></div>
+    </div>
+</div>
 </body>
-</html>
+</html>                                
