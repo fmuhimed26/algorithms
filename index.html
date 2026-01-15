@@ -2081,15 +2081,14 @@
                     <div class="code-block">
                         <div class="code-line"><span class="keyword">public</span> <span class="keyword">static void</span> <span class="method">PrintNumbers</span>(<span class="keyword">int</span> n)</div>
                         <div class="code-line">{</div>
-                        <div class="code-line">    <span class="comment">// الحالة الأساسية: إذا كان n = 0، توقف</span></div>
-                        <div class="code-line">    <span class="keyword">if</span> (n == 0)</div>
-                        <div class="code-line">        <span class="keyword">return</span>;</div>
+                        <div class="code-line">    <span class="comment">// الحالة الأساسية: إذا كان n = 1، توقف</span></div>
+                        <div class="code-line">    <span class="keyword">if</span> (n == 1)</div>
+                        <div class="code-line">    Console.WriteLine(1);</div>
                         <div class="code-line">    </div>
-                        <div class="code-line">    <span class="comment">// الاستدعاء الذاتي أولاً</span></div>
+                        <div class="code-line">    <span class="keyword">else</span></div>
                         <div class="code-line">    PrintNumbers(n - 1);</div>
-                        <div class="code-line">    </div>
-                        <div class="code-line">    <span class="comment">// ثم طباعة الرقم الحالي</span></div>
                         <div class="code-line">    Console.WriteLine(n);</div>
+                        <div class="code-line">    </div>
                         <div class="code-line">}</div>
                     </div>
                     
@@ -4749,8 +4748,8 @@ function startInfixConversion() {
 const exampleImages = {
     // الفرز الفقاعي
     'bubble': [
-        { url: 'bubble1.png', caption: 'Example'},
-        { url: 'bubble2.png', caption: 'Example' }
+        { url: 'bubble1.jpg', caption: 'Example'},
+        { url: 'bubble2.jpg', caption: 'Example' }
     ],
     
     // الفرز بالاختيار
@@ -5108,4 +5107,3 @@ document.getElementById('image-modal').addEventListener('click', function(event)
 </div>
 </body>
 </html>                                
-
